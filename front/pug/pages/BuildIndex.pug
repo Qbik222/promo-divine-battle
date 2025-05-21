@@ -2,86 +2,588 @@
 .fav-page.loading
     .spinner-overlay
         .spinner
-    .table
-        .table__tabs
-            .table__tabs-item.active(data-week="1") #[span(data-translate="tableTab") Faza] 1
-            .table__tabs-item(data-week="2") #[span(data-translate="tableTab") Faza] 2
-        .table__head
-            .table__row
-                .table__row-item(data-translate="tablePlace") [ MJESTO ]
-                .table__row-item(data-translate="tableId") [ ID ]
-                .table__row-item(data-translate="tablePoints") [ BODOVI ]
-                .table__row-item(data-translate="tablePrize") [ NAGRADA ]
-        .table__body#table
-            .table__row.place1.you
-                .table__row-item 01 #[span.you(data-translate="you") ti]
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row.palce2
-                .table__row-item 02
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row.palce3
-                .table__row-item 03
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row
-                .table__row-item 04
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row
-                .table__row-item 05
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row
-                .table__row-item 06
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row
-                .table__row-item 07
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row
-                .table__row-item 08
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row
-                .table__row-item 09
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row
-                .table__row-item 10
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-        .table__body#tableOther
-            .table__row
-                .table__row-item 38
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row.you
-                .table__row-item 39 #[span.you(data-translate="you") ti]
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
-            .table__row
-                .table__row-item 40
-                .table__row-item 4538***
-                .table__row-item 32.9
-                .table__row-item 350 € #[span.table-coin]
+    .welcome
+       .welcome__title(data-translate="welcomeTitle") #[span Божественна] #[span битва]
+        .welcome__cup
+            picture.chose__pers-img
+                source(media="(max-width: 710px)" srcset="img/welcome/cup-mob.png")
+                source(media="(max-width: 950px) and (orientation: landscape) and (max-height: 450px)" srcset="img/welcome/cup-mob.png")
+                source(media="(min-width: 711px) and (max-width: 1050px) and (orientation: portrait)" srcset="img/welcome/cup-desc.png")
+                source(media="(min-width: 601px) and (orientation: landscape)" srcset="img/welcome/cup-desc.png")
+                img(src="img/welcome/cup-desc.png" alt="Favbet" )
+        .welcome__prize
+            .welcome__prize-item(data-translate="welcomePrizeTop") вигравай
+            .welcome__prize-item(data-translate="welcomePrizeBottom") #[span до] #[span 70 000] #[span *] #[span ₴]
+
+        .welcome__left
+           picture
+               source(media="(max-width: 600px)" srcset="img/welcome/pers-left-mob.png")
+               source(media="(max-width: 1050px)" srcset="img/welcome/pers-left-tab.png")
+               img(src="img/welcome/pers-left-desc.png" alt="text")
+        .welcome__right
+            picture
+                source(media="(max-width: 600px)" srcset="img/welcome/pers-left-mob.png")
+                source(media="(max-width: 1050px)" srcset="img/welcome/pers-left-tab.png")
+                img(src="img/welcome/pers-left-desc.png" alt="text")
+        a(href="/login/").welcome__btn.btn.unauth-msg #[span(data-translate="signBtn") авторизуйся]
+        .welcome__btn.btn.part-btn.hide.toChose #[span(data-translate="partBtn") зробити прогноз]
+        //a(href="#").welcome__btn.btn.btn-join.hide(data-translate="mainBtn") авторизуйся
+        .welcome__bottom(data-translate="welcomeBottom") Прогнозуй точні рахунки матчів клубного чемпіонату світу, підтверджуй від 200 грн. їх ставками та забирай призи
+    .drop
+        details.dropdown
+            summary(data-translate="detailsBtn") Детальніше
+            .drop-txt
+                .drop-txt-list(data-translate="rules")
+                    p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
+                    p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
+                    p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
+                    p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
+                    p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
+                    p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
+    .predictor
+        .predictor__stages
+            .predictor__stages-item(data-stage='1') 1 #[span(data-translate="stage") етап]
+            .predictor__stages-item(data-stage='2') 2 #[span(data-translate="stage") етап]
+            .predictor__stages-item(data-stage='3') 3 #[span(data-translate="stage") етап]
+            .predictor__stages-item(data-stage='4') 1/8
+            .predictor__stages-item(data-stage='5') 1/4
+            .predictor__stages-item(data-stage='6') 1/2
+            .predictor__stages-item(data-stage='7') #[span(data-translate="stageFinal") Фінал]
+        .predictor__pers
+            .predictor__pers-left
+                picture.africa
+                    source(media="(max-width: 600px)" srcset="img/predictor/pers/left/africa-mob.png")
+                    img(src="img/predictor/pers/left/africa-desc.png" alt="Africa")
+                picture.asia
+                    source(media="(max-width: 600px)" srcset="img/predictor/pers/left/asia-mob.png")
+                    img(src="img/predictor/pers/left/asia-desc.png" alt="Asia")
+                picture.europa
+                    source(media="(max-width: 600px)" srcset="img/predictor/pers/left/europa-mob.png")
+                    img(src="img/predictor/pers/left/europa-desc.png" alt="Europe")
+                picture.ocean
+                    source(media="(max-width: 600px)" srcset="img/predictor/pers/left/ocean-mob.png")
+                    img(src="img/predictor/pers/left/ocean-desc.png" alt="Ocean")
+                picture.usa
+                    source(media="(max-width: 600px)" srcset="img/predictor/pers/left/usa-mob.png")
+                    img(src="img/predictor/pers/left/usa-desc.png" alt="USA")
+
+            .predictor__pers-right
+                picture.africa
+                    source(media="(max-width: 600px)" srcset="img/predictor/pers/right/africa-mob.png")
+                    img(src="img/predictor/pers/right/africa-desc.png" alt="Africa")
+                picture.asia
+                    source(media="(max-width: 600px)" srcset="img/predictor/pers/right/asia-mob.png")
+                    img(src="img/predictor/pers/right/asia-desc.png" alt="Asia")
+                picture.europa
+                    source(media="(max-width: 600px)" srcset="img/predictor/pers/right/europa-mob.png")
+                    img(src="img/predictor/pers/right/europa-desc.png" alt="Europe")
+                picture.ocean
+                    source(media="(max-width: 600px)" srcset="img/predictor/pers/right/ocean-mob.png")
+                    img(src="img/predictor/pers/right/ocean-desc.png" alt="Ocean")
+                picture.usa
+                    source(media="(max-width: 600px)" srcset="img/predictor/pers/right/usa-mob.png")
+                    img(src="img/predictor/pers/right/usa-desc.png" alt="USA")
+
+        .stages
+            .stages__item(data-stage='1')
+                .stages__tabs
+                    .stages__tabs-item(data-matchup="1")
+                    .stages__tabs-item(data-matchup="2")
+                    .stages__tabs-item(data-matchup="3")
+                    .stages__tabs-item(data-matchup="4")
+                    .stages__tabs-item(data-matchup="5")
+                    .stages__tabs-right
+                    .stages__tabs-left
+                .stages__matchups
+                    .matchup(data-matchup="1")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="2")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="3")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="4")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="5")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+            .stages__item(data-stage='2')
+                .stages__tabs
+                    .stages__tabs-item(data-matchup="1")
+                    .stages__tabs-item(data-matchup="2")
+                    .stages__tabs-item(data-matchup="3")
+                    .stages__tabs-item(data-matchup="4")
+                    .stages__tabs-item(data-matchup="5")
+                    .stages__tabs-right
+                    .stages__tabs-left
+                .stages__matchups
+                    .matchup(data-matchup="1")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="2")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="3")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="4")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="5")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+            .stages__item(data-stage='3')
+                .stages__tabs
+                    .stages__tabs-item(data-matchup="1")
+                    .stages__tabs-item(data-matchup="2")
+                    .stages__tabs-item(data-matchup="3")
+                    .stages__tabs-item(data-matchup="4")
+                    .stages__tabs-item(data-matchup="5")
+                    .stages__tabs-right
+                    .stages__tabs-left
+                .stages__matchups
+                    .matchup(data-matchup="1")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="2")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="3")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="4")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="5")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+            .stages__item(data-stage='4')
+                .stages__tabs
+                    .stages__tabs-item(data-matchup="1")
+                    .stages__tabs-item(data-matchup="2")
+                    .stages__tabs-item(data-matchup="3")
+                    .stages__tabs-item(data-matchup="4")
+                    .stages__tabs-right
+                    .stages__tabs-left
+                .stages__matchups
+                    .matchup(data-matchup="1")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="2")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="3")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="4")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+            .stages__item(data-stage='5')
+                .stages__tabs
+                    .stages__tabs-item(data-matchup="1")
+                    .stages__tabs-item(data-matchup="2")
+                    .stages__tabs-item(data-matchup="3")
+                    .stages__tabs-item(data-matchup="4")
+                    .stages__tabs-right
+                    .stages__tabs-left
+                .stages__matchups
+                    .matchup(data-matchup="1")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="2")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="3")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="4")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+            .stages__item(data-stage='6')
+                .stages__tabs
+                    .stages__tabs-item(data-matchup="1")
+                    .stages__tabs-item(data-matchup="2")
+                    .stages__tabs-right
+                    .stages__tabs-left
+                .stages__matchups
+                    .matchup(data-matchup="1")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+                    .matchup(data-matchup="2")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+            .stages__item(data-stage='7')
+                .stages__tabs
+                    .stages__tabs-item(data-matchup="1")
+                .stages__matchups
+                    .matchup(data-matchup="1")
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="1")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="barselona") Барселона
+                            .matchup__center
+                                .matchup__center-top
+                                .matchup__center-date 15.06 / 19:00
+                            .matchup__team
+                                .matchup__counter(data-matchup-counter="2")
+                                    .matchup__counter-decrease
+                                    .matchup__counter-number 0
+                                    .matchup__counter-increase
+                                .matchup__team-name(data-translate="mancity") Ман сіті
+        .predictor__confirm
+            .predictor__confirm-text(data-translate="betConfirmText") Прогноз збережено! Твій прогноз: 10:10 При потребі його можна змінити кнопкою «Змінити прогноз»
+            .predictor__confirm-item.unconfirmed(data-translate="betUnConfirmed") прогноз не підтверджено
+            .predictor__confirm-item.confirmed(data-translate="betConfirmed") прогноз підтверджено
 
     .drop
         details.dropdown
-            summary(data-translate="rulseBtn")
+            summary(data-translate="mySpins") &#8203;
             .drop-txt
-                .drop-txt-list(data-translate="rules")
+                .drop-txt-list.my-spins
+                    .spins-row
+                        .spins-row-head
+                            .content-date(data-translate="myBetDate") &#8203;
+                            .content-prize(data-translate="myBetPrize") &#8203;
+                            .content-status(data-translate="myBetStatus") &#8203;
+                    .no-spins.hide(data-translate="noBets") &#8203;
+    .drop._table
+        details.dropdown
+            summary(data-translate="tableBtn") &#8203;
+            .table
+                .table__head
+                    .table__column(data-translate="tablePlace") &#8203;
+                    .table__column(data-translate="tableId") &#8203;
+                    .table__column(data-translate="tableBet") &#8203;
+                .table__you#tableOther
+                .table__scroll#table
+                    .table__body

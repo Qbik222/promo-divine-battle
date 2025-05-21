@@ -6,7 +6,10 @@ $black: #1B1B1F
 $grey: #AEAEAE
 
 $font-suisse-intl-reg: SuisseIntl-Regular, sans-serif
+$font-favbet-text-reg: FavbetText-Regular, sans-serif
 $font-suisse-intl-bold: SuisseIntl-Bold, sans-serif
+$font-favbet-text-bold: FavbetText-Bold, sans-serif
+$font-spaceland: Spaceland, sans-serif
 
 .hide
   display: none !important
@@ -147,9 +150,97 @@ body
     display: flex
     align-items: center
 
+.table
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  background: rgba(#000, .3)
+  border: 2px solid white
+  margin-top: 5px
+  padding: 16px
+  &__head
+    display: flex
+    align-items: center
+    justify-content: space-between
+    width: 100%
+    color: rgba($white, .3)
+    padding: 0 20px
+  &__column
+    font-size: 17px
+    font-family: $font-suisse-intl-reg
+    min-width: 120px
+    max-width: 120px
+    white-space: nowrap
+    &:nth-child(2)
+      text-align: center
+    &:nth-child(3)
+      text-align: right
+
+  &__body
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: flex-start
+    gap: 2px
+    width: 100%
+    margin-top: 5px
+  &__scroll
+    width: 100%
+    max-height: 300px
+    overflow-y: auto
+    scrollbar-width: auto
+    &::-webkit-scrollbar
+      background: rgba($white, .3)
+      width: 2px
+    &::-webkit-scrollbar-thumb
+      width: 2px
+      background: $magenta
+  &__you
+    width: 100%
+  &__row
+    display: flex
+    align-items: center
+    justify-content: space-between
+    width: 100%
+    padding: 7px 20px
+    background: rgba($white, .05)
+    &-item
+      min-width: 140px
+      max-width: 140px
+      white-space: nowrap
+      color: $white
+      font-family: $font-suisse-intl-reg
+      font-size: 17px
+      &:nth-child(2)
+        text-align: center
+      &:nth-child(3)
+        text-align: right
+    &._you
+      //padding: 0
+      border: 1px solid $magenta
+      .table__row
+        &-item
+          &._you-text
+            width: fit-content
+            min-width: 30px
+            color: $magenta
+            text-align: left
+            align-self: flex-start
+            margin-right: auto
+          &:nth-child(1)
+            min-width: auto
+            width: fit-content
+            margin-right: 5px
+          &:nth-child(3)
+            text-align: center
+            margin-left: auto
+            margin-right: 23px
+          &:nth-child(4)
+            text-align: right
+
 
 .drop
-  max-width: 605px
+  max-width: 540px
   width: 100%
   margin: 0 auto
   border-radius: 10px
@@ -159,18 +250,20 @@ body
     color: $white
     font-size: 10px
     line-height: 16px
-    //font-family: $font-suisse-intl-reg
+    font-family: $font-suisse-intl-reg
+    opacity: .9
     text-align: center
     margin-bottom: 15px
   .dropdown[open] summary::before
     transform:  rotate(180deg)
   summary
     list-style: none
-    padding: 8px 15px
-    //font-family: $font-suisse-intl-reg
-    font-size: 14px
+    padding: 15px
+    font-family: $font-suisse-intl-reg
+    font-size: 16px
     cursor: pointer
-    background-size: 100% 100%
+    border: 2px solid $white
+    background: rgba($black, .3)
     display: flex
     align-items: center
     justify-content: space-between
@@ -181,17 +274,18 @@ body
     &::before
       content: ""
       display: block
-      min-width: 20px
-      height: 12px
-      //background: url("../img/arrow-drop.png") no-repeat 0 0/contain
+      min-width: 25px
+      height: 25px
+      background: url("../img/arrow-drop.png") no-repeat 0 0/contain
       order: 2
 
   &-txt
     padding: 15px
+    background: rgba($black, .3)
     margin-top: 10px
     max-height: 350px
     overflow-y: auto
-    border: 1px solid $white
+    border: 2px solid $white
     scrollbar-width: auto
     &::-webkit-scrollbar-thumb
       background: $green
@@ -204,33 +298,78 @@ body
       display: flex
       flex-direction: column
       gap: 15px
-      table
-        border-spacing: 0
-        border-color: $white
-        tr, td
-          border-color: $white
+      &.my-spins
+        display: flex
+        .no-spins
+          display: block
           color: $white
-          //font-family: $font-suisse-intl-reg
+          text-align: center
+          font-family: $font-suisse-intl-reg
+          font-size: 16px
+          line-height: 26px
+        .spins-row
+          display: flex
+          flex-direction: column
+          justify-content: space-between
+          width: 100%
+          gap: 2px
+          &-head
+            .content-date
+              min-width: 80px
+          &-item
+            .content-date
+              min-width: 60px
+          &-item, &-head
+            display: flex
+            justify-content: flex-start
+            padding: 7px 20px
+          //border-radius: 13px
+          &-item
+            .content-status
+              width: 30px
+              height: 30px
+              background: url("https://fav-prom.com/html/football-challange-2/img/undone.png") no-repeat 0 0/contain
+              &._done
+                background: url("https://fav-prom.com/html/football-challange-2/img/done.png") no-repeat 0 0/contain
 
-        td
-          border: none
-          border-right: 1px solid $white
-          padding: 0 5px
-        th
-          padding: 0 5px
-      p, strong, a
+          &-head
+            background: transparent
+            opacity: .2
+          &-item
+            background: rgba($white, .05)
+          .content-date, .content-prize, .content-status
+            color: $white
+            font-family: $font-suisse-intl-reg
+            font-size: 16px
+            line-height: 26px
+            @media screen and (max-width: 337px)
+              font-size: 13px
+              line-height: 20px
+          .content-date
+            margin-right: 10px
+            //min-width: 60px
+            max-width: fit-content
+            padding: 0
+            @media screen and (max-width: 600px)
+              margin-right: 20px
+            @media screen and (max-width: 337px)
+              margin-right: 10px
+          .content-prize
+            margin-left: auto
+            margin-right: auto
+      p, strong
         font-size: 16px
         line-height: 26px
-        //font-family: $font-suisse-intl-reg
+        font-family: $font-suisse-intl-reg
         color: $white
         @media screen and (max-width: 600px)
           font-size: 14px
           line-height: 22px
       span
-        //font-family: $font-suisse-intl-reg
+        font-family: $font-suisse-intl-reg
         display: block
       tr,td
-        //font-family: $font-suisse-intl-reg
+        font-family: $font-suisse-intl-reg
       td
         padding-left: 5px
 
@@ -250,7 +389,6 @@ body
     border-radius: 50%
     display: inline-block
     margin: 0 4px 2px 0
-
 
 body.dark
   .spinner-overlay
