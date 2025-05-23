@@ -1,43 +1,553 @@
-$blue: #000055
-$white: #ffffff
-$magenta: #FF267E
-$green: #05C48A
-$black: #1B1B1F
-$grey: #AEAEAE
-
-$font-suisse-intl-reg: SuisseIntl-Regular, sans-serif
-$font-favbet-text-reg: FavbetText-Regular, sans-serif
-$font-suisse-intl-bold: SuisseIntl-Bold, sans-serif
-$font-favbet-text-bold: FavbetText-Bold, sans-serif
-$font-spaceland: Spaceland, sans-serif
+@import "../var"
 
 .hide
   display: none !important
 
 
 body.light
-  background: $blue
+  background: $dark-blue
 
 
 body
   overscroll-behavior: none
   -webkit-tap-highlight-color: transparent
-  background: $blue
+  background: $dark-blue
   img
     max-width: 100%
     height: auto
   & > *
     font-family: inherit
 
+.btn
+  display: flex
+  width: fit-content
+  min-width: 280px
+  position: relative
+  background: transparent
+  border: none
+  &::before
+    content: ""
+    display: block
+    width: 85%
+    height: 82%
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    box-shadow: 0px 0px 41px $green
+    transition: all .5s ease-in-out
+    z-index: 0
+  .btn-txt
+    width: 100%
+    display: block
+    padding: 8px 10px 12px 10px
+    text-align: center
+    color: $dark-blue
+    font-family: $font-spaceland
+    font-size: 36px
+    text-transform: uppercase
+    mask-image: url("../img/btn.png")
+    mask-size: 100% 100%
+    mask-repeat: no-repeat
+    background: $green
+    z-index: 1
+    transition: background-color .5s ease-in-out
+  &:hover
+    cursor: pointer
+    .btn-txt
+      background: $green-hover
+    &::before
+      box-shadow: 0px 0px 41px $green-hover
+
 .fav-page
-  background: $blue
+  background: $dark-blue
   display: flex
   flex-direction: column
   align-items: center
   overflow: hidden
+  padding-bottom: 40px
+.welcome
+  display: flex
+  flex-direction: column
+  align-items: center
+  width: 100%
+  max-width: 1366px
+  padding-bottom: 30px
+  position: relative
+  &__wrap
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    width: 100%
+    max-width: 1366px
+    background: url("../img/welcome/bg-desc.jpg") no-repeat 50% 0/cover
+    background-size: 1366px 610px
+    position: relative
+    padding-top: 25px
+    &::before
+      content: ""
+      display: block
+      width: 100%
+      height: 55%
+      z-index: 1
+      position: absolute
+      left: 0
+      bottom: -30px
+      background: linear-gradient(180deg, rgba(0, 0, 34, 0.00) 0%, rgba(0, 0, 34, 0.66) 36.97%, #002 100%)
+
+  &__left, &__right
+    position: absolute
+    z-index: 0
+  &__left
+    left: 165px
+    max-width: 420px
+    top: 18px
+  &__right
+    right: 150px
+    max-width: 470px
+    top: 38px
+  &__title
+    display: flex
+    align-items: center
+    justify-content: center
+    font-size: 75px
+    color: $white
+    text-transform: uppercase
+    font-family: $font-spaceland
+    text-shadow: 0px 0px 15.056px #FFE2C7
+    z-index: 2
+    span
+      font-family: inherit
+      position: relative
+      &:nth-child(1)
+        display: flex
+        align-items: center
+        &::before
+          content: ""
+          display: block
+          position: absolute
+          left: -5px
+          top: 50%
+          transform: translate(-50%, -50%)
+          width: 1.1em
+          height: 1.3em
+          z-index: -1
+          background: url("../img/text-decor-left.png") no-repeat 0 0/contain
+        &::after
+          content: ''
+          display: block
+          min-width: .67em
+          max-width: .67em
+          height: 1.4em
+          margin: 0 -.1em -.15em -.1em
+          background: url("../img/lightning.png") no-repeat 0 0/contain
+      &:nth-child(2)
+        &::before
+          content: ""
+          display: block
+          position: absolute
+          right: -13px
+          top: 50%
+          transform: translate(50%, -41%)
+          width: 1em
+          height: 1.3em
+          z-index: -1
+          background: url("../img/text-decor-right.png") no-repeat 0 0/contain
+  &__cup
+    max-width: 230px
+    position: relative
+    margin-top: -100px
+    z-index: 1
+    picture
+      z-index: 1
+    &::before
+      content: ''
+      display: block
+      pointer-events: none
+      width: 540px
+      height: 540px
+      position: absolute
+      top: -130px
+      z-index: 0
+      left: 50%
+      transform: translate(-50%, -0)
+      background: url("../img/welcome/light-desc.png") no-repeat 0 0/contain
+      @media screen and (max-width: 600px)
+        background: url("../img/welcome/light-mob.png") no-repeat 0 0/contain
+  &__prize
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: flex-start
+    z-index: 2
+    text-transform: uppercase
+    &-item
+      display: flex
+      align-items: flex-start
+      color: $magenta
+      font-family: $font-spaceland
+      gap: 8px
+      text-shadow: 0px 1.32px 0px #000
+      & > *
+        font-family: inherit
+      &:nth-child(1)
+        font-size: 65px
+        line-height: 65px
+      &:nth-child(2)
+        span
+          &:nth-child(1)
+            font-size: 36px
+            line-height: 36px
+          &:nth-child(2)
+            font-size: 100px
+            line-height: 82px
+          &:nth-child(3)
+            font-size: 36px
+            line-height: 36px
+          &:nth-child(4)
+            font-size: 68px
+            line-height: 68px
+            margin-top: auto
+  &__btn
+    margin-top: 10px
+  &__bottom
+    margin-top: 40px
+    max-width: 825px
+    color: $white
+    font-family: $font-suisse-intl-reg
+    font-size: 17px
+    line-height: 22px
+    text-align: center
+.predictor
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding: 30px 0
+  &__title
+    color: $magenta
+    font-family: $font-spaceland
+    font-size: 68px
+    text-transform: uppercase
+    text-shadow: 0px 1px 0px #000
+  &__stages
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 5px 25px 5px 15px
+    mask-image: url("../img/predictor/tabs-wrap-mask.png")
+    mask-repeat: no-repeat
+    mask-size: 100% 100%
+    background: #010053
+    &-item
+      color: $white
+      font-family: $font-spaceland-norm
+      text-transform: uppercase
+      font-size: 24px
+      line-height: 24px
+      padding: 5px 10px
+      mask-image: url("../img/predictor/tab-mask.png")
+      mask-repeat: no-repeat
+      mask-size: 100% 100%
+      text-decoration: underline
+      text-decoration-style: dotted
+      &._active
+        background: $magenta
+        text-decoration: none
+      &._lock
+        opacity: .3
+      span
+        font-family: inherit
+  &__pers
+    position: absolute
+    &-left, &-right
+      .predictor__pers-img
+        display: none
+
+    &-left.africa .predictor__pers-img.africa,
+    &-right.africa .predictor__pers-img.africa
+      display: block
+
+    &-left.asia .predictor__pers-img.asia,
+    &-right.asia .predictor__pers-img.asia
+      display: block
+
+    &-left.europa .predictor__pers-img.europa,
+    &-right.europa .predictor__pers-img.europa
+      display: block
+
+    &-left.ocean .predictor__pers-img.ocean,
+    &-right.ocean .predictor__pers-img.ocean
+      display: block
+
+    &-left.usa .predictor__pers-img.usa,
+    &-right.usa .predictor__pers-img.usa
+      display: block
+  &__confirm
+    display: flex
+    flex-direction: column
+    align-items: center
+    max-width: 280px
+    margin-bottom: 10px
+    z-index: 2
+    &-text
+      color: $white
+      font-family: $font-favbet-text-reg
+      text-align: center
+      font-size: 14px
+      background: rgba($black, .4)
+      border-radius: 6px
+      padding: 4px
+      margin-bottom: 10px
+    &-item
+      color: $white
+      font-size: 14px
+      line-height: 14px
+      font-family: $font-favbet-text-reg
+      border-radius: 6px
+      padding: 4px
+      background: rgba(5, 196, 138, 0.60)
+      align-items: center
+      display: none
+      &::before
+        content: ""
+        display: block
+        width: 17px
+        height: 14px
+        background: url("../img/predictor/matchup/icon-confirm.png") no-repeat 0 0/contain
+        margin-right: 3px
+      &.unconfirmed
+        background: rgba(234, 190, 47, 0.60)
+        position: relative
+        .unconfirm-popup
+          width: 22px
+          height: 22px
+          position: absolute
+          right: -10px
+          top: 50%
+          transform: translate(100%, -50%)
+          background: url("../img/info-popup.png") no-repeat 0 0/contain
+        &::before
+          background: url("../img/predictor/matchup/icon-unconfirm.png") no-repeat 0 0/contain
+      &.confirmed
+    &.unconfirmed
+      .unconfirmed
+        display: flex
+    &.confirmed
+      .confirmed
+        display: flex
 
 
 
+.stages
+  &__item
+    display: none
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    &._active
+      display: flex
+  &__predict-status
+    display: none
+  &__tabs
+    display: flex
+    align-items: center
+    justify-content: center
+    gap: 40px
+    margin-top: 15px
+    position: relative
+    &-right, &-left
+      position: absolute
+      width: 50px
+      height: 64px
+      top: 50%
+      border: none
+    &-right
+      right: 0
+      transform: translate(100%, -50%)
+      background: url("../img/predictor/arrow-tabs-right.png") no-repeat 0 0/contain
+    &-left
+      left: 0
+      transform: translate(-100%, -50%)
+      background: url("../img/predictor/arrow-tabs-left.png") no-repeat 0 0/contain
+    &-item
+      display: flex
+      font-size: 24px
+      font-family: $font-spaceland
+      color: $white
+      text-transform: uppercase
+      opacity: .5
+      width: 50px
+      background: transparent
+      border: none
+      gap: 5px
+      &._active
+        opacity: 1
+        position: relative
+        &:before
+          content: ""
+          display: block
+          width: 110%
+          height: 1px
+          background: $white
+          position: absolute
+          bottom: 0
+          left: 50%
+          transform: translate(-50%, 0)
+          border-radius: 2px
+
+.matchup
+  display: none
+  align-items: flex-end
+  justify-content: center
+  margin: 60px 0
+  &._active
+    display: flex
+  &__team
+    display: flex
+    align-items: center
+    flex-direction: column
+    justify-content: center
+    &-name
+      font-family: $font-spaceland
+      color: $white
+      font-size: 24px
+      line-height: 24px
+      text-transform: uppercase
+  &__counter
+    display: flex
+    align-items: center
+    justify-content: space-between
+    width: 120px
+    &-decrease, &-increase
+      width: 37px
+      height: 35px
+    &-increase
+      background: url("../img/predictor/matchup/btn-plus.png") no-repeat 0 0/contain
+    &-decrease
+      background: url("../img/predictor/matchup/btn-minus.png") no-repeat 0 0/contain
+
+    &-number
+      font-family: $font-spaceland
+      color: $white
+      font-size: 37px
+      line-height: 37px
+      text-transform: uppercase
+  &__center
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    &-date
+      font-family: $font-spaceland
+      color: $white
+      font-size: 24px
+    &-top
+      width: 150px
+      height: 87px
+      background: url("../img/predictor/matchup/vs-icon.png") no-repeat 0 0/contain
+
+
+.progress
+  display: flex
+  flex-direction: column
+  align-items: center
+  width: 100%
+  max-width: 350px
+  &__top
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 100%
+  &__body
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 300px
+    gap: 8px
+    margin-top: 12px
+  &__item
+    display: flex
+    align-items: center
+    justify-content: space-between
+    width: 100%
+    height: 32px
+    padding: 3px 10px 5px 10px
+    position: relative
+    &::after
+      content: ""
+      width: 100%
+      height: 100%
+      position: absolute
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)
+      background: #010187
+      mask-image: url("../img/progress/progress-item-mask.png")
+      mask-size: 100% 100%
+      mask-repeat: no-repeat
+    &._current
+      position: relative
+      left: 25px
+      &::after
+        background: $magenta
+      .progress
+        &__item
+          &-predict, &-prize
+            opacity: 1
+    &._done
+      &::before
+        content: ""
+        display: block
+        position: absolute
+        width: 13px
+        height: 14px
+        background: url("../img/progress/done-icon.png") no-repeat 0 0/contain
+        top: 50%
+        left: 0
+        z-index: 2
+        transform: translate(-50%, -50%)
+      .progress
+        &__item
+          &-predict, &-prize
+            opacity: 1
+    &-predict
+      font-family: $font-spaceland
+      color: $white
+      opacity: .5
+      font-size: 17px
+      text-transform: uppercase
+      z-index: 1
+    &-prize
+      color: $white
+      opacity: .5
+      font-family: $font-spaceland-norm
+      font-size: 24px
+      text-transform: uppercase
+      z-index: 1
+  &__title
+    color: $white
+    font-family: $font-spaceland
+    font-size: 24px
+    line-height: 20px
+    background: $magenta
+    mask-image: url("../img/progress/progress-title-mask.png")
+    mask-repeat: no-repeat
+    mask-size: 100% 100%
+    text-transform: uppercase
+    padding: 3px 30px 2px 15px
+    text-shadow: 0px 0.986px 0.493px rgba(0, 0, 0, 0.50)
+  &__status
+    display: flex
+    align-items: center
+    justify-content: center
+    &-count, &-text
+      color: $white
+      font-family: $font-spaceland
+      text-shadow: 0px 0.986px 0.493px rgba(0, 0, 0, 0.50)
+      font-size: 24px
+      line-height: 20px
+      text-transform: uppercase
 // loader
 
 .spinner-overlay
@@ -63,14 +573,23 @@ body
   overflow: hidden
 
 
+#tableOther
+  margin-top: 10px
+
 .table
   display: flex
   flex-direction: column
   align-items: center
   justify-content: flex-start
-  width: 405px
-  min-height: 440px
+  width: 340px
   z-index: 1
+  padding-bottom: 20px
+  &__title
+    color: $magenta
+    font-family: $font-spaceland
+    font-size: 68px
+    text-transform: uppercase
+    text-shadow: 0px 1px 0px #000
   &__tabs
     display: flex
     align-items: center
@@ -95,26 +614,57 @@ body
     display: flex
     flex-direction: column
     align-items: center
+    gap: 3px
+  &__column
+    color: $white
+    width: 33.3%
+    text-align: center
+    font-family: $font-suisse-intl-reg
+    font-size: 12px
+  &__scroll
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
   &__row
     display: flex
     width: 100%
     align-items: center
     position: relative
+    justify-content: space-between
+    height: 29px
+    background: #010187
+    mask-image: url("../img/table/table-row-mask.png")
+    mask-repeat: no-repeat
+    mask-size: 100% 100%
     &.you
+      background: $magenta
+      .table__row-item:nth-child(1)
+        position: relative
+    &-you
+      font-family: $font-spaceland
+      position: absolute
+      text-transform: uppercase
+      top: 50%
+      left: 95px
+      transform: translate(0, -50%)
+      font-size: 24px
+      line-height: 22px
+      padding: 2px 10px 0px 10px
       background: $white
-      .table__row-item
-        color: $blue
-      .you
-        //font-family: $font-favbet-text-reg
-        text-transform: uppercase
-        margin-left: 5px
+      color: $magenta
+      mask-image: url("../img/table/you-mask.png")
+      mask-repeat: no-repeat
+      mask-size: 100% 100%
     &-item
       display: flex
       align-items: center
       justify-content: center
       color: $white
+      width: 33.3%
       //font-family: $font-suisse-intl-reg
       font-size: 12px
+      font-family: $font-favbet-text-reg
     &.place1, &.place2, &.place3
       .you
         position: absolute
@@ -149,95 +699,118 @@ body
     width: 100%
     display: flex
     align-items: center
+    margin-bottom: 5px
 
-.table
+.info
   display: flex
+  align-items: center
   flex-direction: column
-  align-items: flex-start
-  background: rgba(#000, .3)
-  border: 2px solid white
-  margin-top: 5px
-  padding: 16px
-  &__head
-    display: flex
-    align-items: center
-    justify-content: space-between
-    width: 100%
-    color: rgba($white, .3)
-    padding: 0 20px
-  &__column
+  padding-top: 50px
+  width: 100%
+  max-width: 825px
+  &__text
+    font-family: $font-favbet-text-reg
     font-size: 17px
-    font-family: $font-suisse-intl-reg
-    min-width: 120px
-    max-width: 120px
-    white-space: nowrap
-    &:nth-child(2)
-      text-align: center
-    &:nth-child(3)
-      text-align: right
-
-  &__body
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: flex-start
-    gap: 2px
-    width: 100%
-    margin-top: 5px
-  &__scroll
-    width: 100%
-    max-height: 300px
-    overflow-y: auto
-    scrollbar-width: auto
-    &::-webkit-scrollbar
-      background: rgba($white, .3)
-      width: 2px
-    &::-webkit-scrollbar-thumb
-      width: 2px
-      background: $magenta
-  &__you
-    width: 100%
-  &__row
+    line-height: 22px
+    color: $white
+    margin-bottom: 20px
+  &__wrap
     display: flex
     align-items: center
     justify-content: space-between
+    max-height: 300px
+    padding: 0 80px 0 35px
     width: 100%
-    padding: 7px 20px
-    background: rgba($white, .05)
-    &-item
-      min-width: 140px
-      max-width: 140px
-      white-space: nowrap
+    overflow: hidden
+    border-radius: 8px
+    background: url("../img/info/bg-desc.jpg") no-repeat 50% 0/cover
+    @media screen and (max-width: 1050px)
+      background: url("../img/info/bg-tab.jpg") no-repeat 50% 0/cover
+    @media screen and (max-width: 600px)
+      background: url("../img/info/bg-mob.jpg") no-repeat 50% 0/cover
+  &__left
+    &-title
+      display: flex
+      align-items: center
+      justify-content: center
+      font-size: 42px
       color: $white
-      font-family: $font-suisse-intl-reg
-      font-size: 17px
-      &:nth-child(2)
-        text-align: center
-      &:nth-child(3)
-        text-align: right
-    &._you
-      //padding: 0
-      border: 1px solid $magenta
-      .table__row
-        &-item
-          &._you-text
-            width: fit-content
-            min-width: 30px
-            color: $magenta
-            text-align: left
-            align-self: flex-start
-            margin-right: auto
-          &:nth-child(1)
-            min-width: auto
-            width: fit-content
-            margin-right: 5px
-          &:nth-child(3)
-            text-align: center
-            margin-left: auto
-            margin-right: 23px
-          &:nth-child(4)
-            text-align: right
-
+      text-transform: uppercase
+      font-family: $font-spaceland
+      text-shadow: 0px 0px 15.056px #FFE2C7
+      z-index: 2
+      span
+        font-family: inherit
+        position: relative
+        &:nth-child(1)
+          display: flex
+          align-items: center
+          &::before
+            content: ""
+            display: block
+            position: absolute
+            left: -5px
+            top: 50%
+            transform: translate(-50%, -50%)
+            width: 1.1em
+            height: 1.3em
+            z-index: 0
+            background: url("../img/text-decor-left.png") no-repeat 0 0/contain
+          &::after
+            content: ''
+            display: block
+            min-width: .67em
+            max-width: .67em
+            height: 1.4em
+            margin: 0 -.1em -.15em -.1em
+            background: url("../img/lightning.png") no-repeat 0 0/contain
+        &:nth-child(2)
+          &::before
+            content: ""
+            display: block
+            position: absolute
+            right: -13px
+            top: 50%
+            transform: translate(50%, -41%)
+            width: 1em
+            height: 1.3em
+            z-index: 0
+            background: url("../img/text-decor-right.png") no-repeat 0 0/contain
+  &__right
+    max-width: 382px
+    position: relative
+    top: 10px
+  &__prize
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    &-top, &-bottom
+      text-transform: uppercase
+      color: $magenta
+      font-family: $font-spaceland
+      text-shadow: 0px 0.973px 0px #000
+    &-top
+      font-size: 46px
+      line-height: 46px
+    &-bottom
+      font-size: 73px
+      line-height: 73px
+      display: flex
+      align-items: flex-start
+      span
+        font-family: inherit
+        &:nth-child(2)
+          font-size: 26px
+          line-height: 26px
+          margin-top: 10px
+          margin-left: 4px
+        &:nth-child(3)
+          font-size: 50px
+          line-height: 57px
+          margin-top: auto
+  &__btn
+    margin-top: 20px
 
 .drop
   max-width: 540px
@@ -253,7 +826,7 @@ body
     font-family: $font-suisse-intl-reg
     opacity: .9
     text-align: center
-    margin-bottom: 15px
+    margin: 15px 0 45px 0
   .dropdown[open] summary::before
     transform:  rotate(180deg)
   summary
@@ -263,7 +836,7 @@ body
     font-size: 16px
     cursor: pointer
     border: 2px solid $white
-    background: rgba($black, .3)
+    //background: rgba($black, .3)
     display: flex
     align-items: center
     justify-content: space-between
@@ -281,7 +854,7 @@ body
 
   &-txt
     padding: 15px
-    background: rgba($black, .3)
+    //background: rgba($black, .3)
     margin-top: 10px
     max-height: 350px
     overflow-y: auto
