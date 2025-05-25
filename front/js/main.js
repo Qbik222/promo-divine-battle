@@ -2,48 +2,20 @@
 
     const apiURL = 'https://fav-prom.com/api_your_promo'
 
-    const getActiveWeek = (promoStartDate, weekDuration) => {
-        const currentDate = new Date();
-        let weekDates = [];
-
-        const Day = 24 * 60 * 60 * 1000;
-        const Week = weekDuration * Day;
-
-        const formatDate = (date) =>
-            `${date.getDate().toString().padStart(2, "0")}.${(date.getMonth() + 1).toString().padStart(2, "0")}`;
-
-        const calculateWeekPeriod = (weekIndex) => {
-            const baseStart = promoStartDate.getTime();
-            const start = new Date(baseStart + weekIndex * Week);
-            let end = new Date(start.getTime() + (weekDuration * Day - 1));
-            return { start, end };
-        };
-
-        let activeWeekIndex = null;
-
-        // Перевірка поточного тижня
-        for (let i = 0; i < 10; i++) { // Обмежуємо 10 тижнями (якщо потрібно більше, просто змініть лічильник)
-            const { start, end } = calculateWeekPeriod(i);
-            if (currentDate >= start && currentDate <= end) {
-                activeWeekIndex = i + 1;
-                break;
-            }
-        }
-
-        return activeWeekIndex;
-    };
-
-    const promoStartDate = new Date("2025-05-05T00:00:00");
-    const weekDuration = 10;
-
-    const activeWeek = getActiveWeek(promoStartDate, weekDuration) || 1;
-
-
     const mainPage = document.querySelector(".fav-page"),
         unauthMsgs = document.querySelectorAll('.unauth-msg'),
         participateBtns = document.querySelectorAll('.part-btn'),
         redirectBtns = document.querySelectorAll('.btn-join'),
-        loader = document.querySelector(".spinner-overlay")
+        loader = document.querySelector(".spinner-overlay"),
+        stagesTabs = document.querySelectorAll('.predictor__stages-item'),
+        stagesBlocks = document.querySelectorAll('.stages__item'),
+        stagesMatchupTabs = document.querySelectorAll('.stages__tabs-item'),
+        predictorPersLeft = document.querySelector('.predictor__pers-left'),
+        predictorPersRight = document.querySelector('.predictor__pers-right'),
+        makePredictBtn = document.querySelector('.make-predict'),
+        matchupArrowRight = document.querySelector('.stages__tabs-right'),
+        matchupArrowLeft = document.querySelector('.stages__tabs-left');
+
 
     const ukLeng = document.querySelector('#ukLeng');
     const enLeng = document.querySelector('#enLeng');
@@ -55,12 +27,72 @@
         el.removeAttribute('data-translate');
     });
 
+    const testCounties =
+        [
+            { left: 'africa', right: 'africa' },
+            { left: 'asia', right: 'asia' },
+            { left: 'europa', right: 'europa' },
+            { left: 'ocean', right: 'ocean' },
+            { left: 'usa', right: 'usa' }
+        ]
+
     let loaderBtn = false
 
     let locale = "en"
 
     if (ukLeng) locale = 'uk';
     if (enLeng) locale = 'en';
+
+    let activeStage = 1
+    let activeMatchup = 1
+
+    let predictorTabsData = [
+        {stage: 1, activeMatchup: 1, score: [{team1: 1, team2: 0}, {team1: 2, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}]},
+        {stage: 2, activeMatchup: 1, score: [{team1: 1, team2: 0}, {team1: 2, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}]},
+        {stage: 3, activeMatchup: 1, score: [{team1: 1, team2: 0}, {team1: 2, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}, {team1: 0, team2: 0}]},
+        {stage: 4, activeMatchup: 1, score: [{team1: 1, team2: 0}, {team1: 2, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}]},
+        {stage: 5, activeMatchup: 1, score: [{team1: 1, team2: 0}, {team1: 2, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}]},
+        {stage: 6, activeMatchup: 1, score: [{team1: 1, team2: 0}, {team1: 2, team2: 0}]},
+        {stage: 7, activeMatchup: 1, score: [{team1: 1, team2: 0}]},
+    ]
+
+    function setActiveBlocks (stage, matchup){
+
+        if(stage === undefined){
+            stage = 1
+        }
+        if(matchup === undefined){
+            matchup = 1
+        }
+
+        console.log(matchup)
+
+        const activeStageTab =  document.querySelector(`.predictor__stages-item[data-stage="${stage}"]`)
+        const activeStageBlock =  document.querySelector(`.stages__item[data-stage="${stage}"]`);
+        const activeMatchups = activeStageBlock.querySelectorAll('.matchup');
+        const activeMatchupTabs = activeStageBlock.querySelectorAll('.stages__tabs-item');
+        const activeTeam1Counters = activeStageBlock.querySelectorAll('[data-matchup-counter="1"]');
+        const activeTeam2Counters = activeStageBlock.querySelectorAll('[data-matchup-counter="2"]');
+        const activeTeam1CounterNum = activeTeam1Counters[matchup - 1].querySelector('.matchup__counter-number');
+        const activeTeam2CounterNum = activeTeam2Counters[matchup - 1].querySelector('.matchup__counter-number');
+        //
+        // console.log(activeTeam1Counters[1])
+        // console.log(activeTeam1CounterNum)
+
+        activeTeam1CounterNum.textContent = predictorTabsData[stage - 1].score[matchup - 1].team1
+        activeTeam2CounterNum.textContent = predictorTabsData[stage - 1].score[matchup - 1].team2
+
+        // console.log(predictorTabsData[stage - 1].score[matchup - 1])
+
+        toggleActiveByDataAttribute(stagesTabs, 'stage', stage);
+        toggleActiveByDataAttribute(stagesBlocks, 'stage', stage);
+        toggleActiveByDataAttribute(activeMatchupTabs, 'matchup', matchup);
+        toggleActiveByDataAttribute(activeMatchups, 'matchup', matchup);
+
+        makePredictBtn.setAttribute('data-stage', stage);
+        makePredictBtn.setAttribute('data-matchup', matchup);
+
+    }
 
     let debug = true
 
@@ -120,7 +152,86 @@
         }
 
         function quickCheckAndRender() {
-            checkUserAuth();
+            // checkUserAuth();
+            setActiveBlocks(activeStage, activeMatchup)
+
+            stagesTabs.forEach(tab => {
+                tab.addEventListener('click', () =>{
+
+                    const regions = ['africa', 'usa', 'europa', 'ocean', 'asia']
+
+                    predictorPersLeft.classList.remove(...regions)
+                    predictorPersRight.classList.remove(...regions)
+
+                    // console.log(predictorTabsData)
+                    // console.log(regions[predictorTabsData[activeStage - 1].activeMatchup])
+                    // console.log(predictorTabsData[activeStage - 1].activeMatchup)
+
+
+
+                    setStageFromTab(tab)
+                    setActiveBlocks(activeStage, predictorTabsData[activeStage - 1].activeMatchup)
+
+                    predictorPersLeft.classList.add(`${regions[predictorTabsData[activeStage - 1].activeMatchup - 1]}`)
+                    predictorPersRight.classList.add(`${regions[predictorTabsData[activeStage - 1].activeMatchup - 1]}`)
+                });
+            })
+
+            stagesMatchupTabs.forEach((tab, i) => {
+                tab.addEventListener('click', () =>{
+                    setMatchupFromTab(tab)
+
+                    const regions = ['africa', 'usa', 'europa', 'ocean', 'asia']
+
+                    predictorPersLeft.classList.remove(...regions)
+                    predictorPersRight.classList.remove(...regions)
+
+
+                    predictorPersLeft.classList.add(`${regions[activeMatchup - 1]}`)
+                    predictorPersRight.classList.add(`${regions[activeMatchup - 1]}`)
+
+                    console.log(predictorTabsData[activeStage - 1].activeMatchup)
+                    setActiveBlocks(activeStage, predictorTabsData[activeStage - 1].activeMatchup)
+
+
+                });
+            })
+
+            document.addEventListener("click", (e) =>{
+                if(e.target.closest(".matchup__counter-increase")){
+                    const btnStageNum = Number(e.target.closest('[data-stage]').getAttribute('data-stage'))
+                    const btnMatchupNum = Number(e.target.closest('[data-matchup]').getAttribute('data-matchup'))
+                    const btnTeamNum = Number(e.target.closest('[data-matchup-counter]').getAttribute('data-matchup-counter'))
+                    const teamScore = Number(predictorTabsData[btnStageNum - 1].score[btnMatchupNum - 1][`team${btnTeamNum}`])
+                    setMatchupScore(btnStageNum, `team${btnTeamNum}`, btnMatchupNum, teamScore + 1)
+                    setActiveBlocks(btnStageNum, btnMatchupNum)
+                }
+
+                if(e.target.closest(".matchup__counter-decrease")){
+                    const btnStageNum = Number(e.target.closest('[data-stage]').getAttribute('data-stage'))
+                    const btnTeamNum = Number(e.target.closest('[data-matchup-counter]').getAttribute('data-matchup-counter'))
+                    const btnMatchupNum = Number(e.target.closest('[data-matchup]').getAttribute('data-matchup'))
+
+                    const teamScore = Number(predictorTabsData[btnStageNum - 1].score[btnMatchupNum - 1][`team${btnTeamNum}`])
+
+                    const newScore = teamScore ? teamScore - 1 : 0
+
+                    setMatchupScore(btnStageNum, `team${btnTeamNum}`, btnMatchupNum, newScore)
+
+                    setActiveBlocks(btnStageNum, btnMatchupNum)
+
+                }
+            })
+
+            matchupArrowRight.addEventListener("click", () =>{
+                setMatchupFromArrow(matchupArrowRight, "right")
+                setActiveBlocks(activeStage, predictorTabsData[activeStage - 1].activeMatchup)
+            })
+            matchupArrowLeft.addEventListener("click", () =>{
+                setMatchupFromArrow(matchupArrowLeft, "left")
+                setActiveBlocks(activeStage, predictorTabsData[activeStage - 1].activeMatchup)
+            })
+
 
         }
 
@@ -158,6 +269,81 @@
             });
     }
 
+    function toggleActiveByDataAttribute(elements, attributeName, valueToMatch) {
+        elements.forEach(el => {
+            const attrValue = Number(el.dataset[attributeName]);
+            // console.log(el, el.dataset[attributeName], valueToMatch);
+            if (attrValue === Number(valueToMatch)) {
+                el.classList.add('_active');
+            } else {
+                el.classList.remove('_active');
+            }
+        });
+    }
+
+
+
+    function setMatchupScore(stage, team, matchup, num){
+        console.log(num)
+        // console.log( predictorTabsData[stage - 1].score[matchup])
+        predictorTabsData[stage - 1].score[matchup - 1][`${team}`] = num
+    }
+
+    function setStageFromTab(block){
+        const blockStageNum = Number(block.dataset.stage)
+
+        // predictorTabsData[blockStageNum - 1].stage = blockStageNum;
+
+
+        return activeStage = blockStageNum;
+    }
+    function setMatchupFromTab(block) {
+        const matchupNum = Number(block.dataset.matchup);
+        predictorTabsData[activeStage - 1].activeMatchup = matchupNum;
+        activeMatchup = matchupNum;
+        return activeMatchup;
+    }
+
+    function setMatchupFromArrow(arrow, direction) {
+        const tabWrap = arrow.closest(".stages__tabs")
+
+        const activeTab = tabWrap.querySelector("._active");
+        const activeTabs = tabWrap.querySelectorAll(".stages__tabs-item");
+
+        let activeTabMatchup = Number(activeTab.dataset.matchup);
+
+        console.log(activeTabMatchup);
+
+
+
+        if(direction === 'left'){
+            console.log(direction)
+            console.log(activeTabMatchup);
+            if(activeTabMatchup){
+                activeTabMatchup = activeTabMatchup - 1;
+                predictorTabsData[activeStage - 1].activeMatchup = activeTabMatchup;
+            }
+            if(activeTabMatchup === 0){
+                activeTabMatchup = activeTabs.length;
+                predictorTabsData[activeStage - 1].activeMatchup = activeTabMatchup;
+            }
+        }
+        if(direction === 'right'){
+            console.log(direction)
+            console.log(activeTabs)
+            if(activeTabMatchup >= activeTabs.length){
+                activeTabMatchup = 1;
+                predictorTabsData[activeStage - 1].activeMatchup = activeTabMatchup;
+            }else{
+                activeTabMatchup = activeTabMatchup + 1;
+                predictorTabsData[activeStage - 1].activeMatchup = activeTabMatchup;
+            }
+
+        }
+        console.log(activeTabMatchup);
+        activeMatchup = activeTabMatchup;
+        return activeMatchup;
+    }
 
     function checkUserAuth() {
         const loadTime = 200;
@@ -368,5 +554,7 @@
     }
 
     // loadTranslations().then(init) запуск ініту сторінки
+
+    init()
 
 })();

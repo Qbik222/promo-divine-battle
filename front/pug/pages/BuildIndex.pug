@@ -40,15 +40,15 @@
     .predictor
         .predictor__title(data-translate="predictorTitle") Вгадай рахунок
         .predictor__stages
-            .predictor__stages-item._active(data-stage='1') #[span(data-translate="stage") 1 етап]
+            .predictor__stages-item(data-stage='1') #[span(data-translate="stage") 1 етап]
             .predictor__stages-item(data-stage='2') #[span(data-translate="stage") 2 етап]
             .predictor__stages-item(data-stage='3') #[span(data-translate="stage") 3 етап]
-            .predictor__stages-item._active(data-stage='4') 1/8
+            .predictor__stages-item(data-stage='4') 1/8
             .predictor__stages-item(data-stage='5') 1/4
-            .predictor__stages-item._lock(data-stage='6') 1/2
-            .predictor__stages-item._lock(data-stage='7') #[span(data-translate="stageFinal") Фінал]
+            .predictor__stages-item(data-stage='6') 1/2
+            .predictor__stages-item(data-stage='7') #[span(data-translate="stageFinal") Фінал]
         .predictor__pers
-            .predictor__pers-left
+            .predictor__pers-left.africa
                 .predictor__pers-img.africa
                     picture
                         source(media="(max-width: 600px)" srcset="img/predictor/pers/left/africa-mob.png")
@@ -70,7 +70,7 @@
                         source(media="(max-width: 600px)" srcset="img/predictor/pers/left/usa-mob.png")
                         img(src="img/predictor/pers/left/usa-desc.png" alt="USA")
 
-            .predictor__pers-right
+            .predictor__pers-right.africa
                 .predictor__pers-img.africa
                     picture
                         source(media="(max-width: 600px)" srcset="img/predictor/pers/right/africa-mob.png")
@@ -93,9 +93,9 @@
                         img(src="img/predictor/pers/right/usa-desc.png" alt="USA")
 
         .stages
-            .stages__item._active(data-stage='1')
+            .stages__item(data-stage='1')
                 .stages__tabs
-                    button.stages__tabs-item._active(data-matchup="1") #[span(data-translate="matchup") матч] 1
+                    button.stages__tabs-item(data-matchup="1") #[span(data-translate="matchup") матч] 1
                     button.stages__tabs-item(data-matchup="2") #[span(data-translate="matchup") матч] 2
                     button.stages__tabs-item(data-matchup="3") #[span(data-translate="matchup") матч] 3
                     button.stages__tabs-item(data-matchup="4") #[span(data-translate="matchup") матч] 4
@@ -596,7 +596,7 @@
                                     .matchup__counter-number 0
                                     button.matchup__counter-increase
                                 .matchup__team-name(data-translate="mancity") Ман сіті
-        .predictor__confirm.unconfirmed
+        .predictor__confirm.unconfirmed.hide
             .predictor__confirm-text(data-translate="betConfirmText") Прогноз збережено! Твій прогноз: 10:10 При потребі його можна змінити кнопкою «Змінити прогноз»
             .predictor__confirm-item.unconfirmed(data-translate="betUnConfirmed") Прогноз не підтверджено #[span.unconfirm-popup]
             .predictor__confirm-item.confirmed(data-translate="betConfirmed") Прогноз підтверджено

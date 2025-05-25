@@ -224,6 +224,32 @@ body
   flex-direction: column
   align-items: center
   padding: 30px 0
+  position: relative
+  width: 825px
+  background: url("../img/predictor/bg-desc.jpg") no-repeat 50% 66%/cover
+  background-size: 460px 380px
+  @media screen and (max-width: 600px)
+    background: url("../img/predictor/bg-mob.jpg") no-repeat 50% 50%/cover
+    background-size: 375px 315px
+  &::before, &::after
+    content: ""
+    display: block
+    position: absolute
+    z-index: 0
+    pointer-events: none
+    width: 415px
+    height: 460px
+    top: 105px
+  &::before
+    left: 0
+    background: url('../img/predictor/left-bg-desc.png') no-repeat 0 0/contain
+    @media screen and (max-width: 600px)
+      background: url('../img/predictor/left-bg-mob.png') no-repeat 0 0/contain
+  &::after
+    right: 0
+    background: url('../img/predictor/right-bg-desc.png') no-repeat 0 0/contain
+    @media screen and (max-width: 600px)
+      background: url('../img/predictor/right-bg-mob.png') no-repeat 0 0/contain
   &__title
     color: $magenta
     font-family: $font-spaceland
@@ -251,15 +277,28 @@ body
       mask-size: 100% 100%
       text-decoration: underline
       text-decoration-style: dotted
+      &:hover
+        cursor: pointer
       &._active
         background: $magenta
         text-decoration: none
       &._lock
         opacity: .3
+        pointer-events: none
       span
         font-family: inherit
   &__pers
     position: absolute
+    width: 100%
+    height: 350px
+    top: 63%
+    left: 50%
+    transform: translate(-50%, -50%)
+    display: flex
+    align-items: center
+    justify-content: space-between
+    z-index: 1
+    pointer-events: none
     &-left, &-right
       .predictor__pers-img
         display: none
@@ -267,22 +306,56 @@ body
     &-left.africa .predictor__pers-img.africa,
     &-right.africa .predictor__pers-img.africa
       display: block
+      max-width: 175px
+
+    &-left.africa .predictor__pers-img.africa
+      margin-left: 50px
+    &-right.africa .predictor__pers-img.africa
+      margin-right: 50px
+
 
     &-left.asia .predictor__pers-img.asia,
     &-right.asia .predictor__pers-img.asia
       display: block
+      max-width: 190px
+
+
+    &-left.asia .predictor__pers-img.asia
+      margin-left: 50px
+    &-right.asia .predictor__pers-img.asia
+      margin-right: 50px
 
     &-left.europa .predictor__pers-img.europa,
     &-right.europa .predictor__pers-img.europa
       display: block
+      max-width: 155px
+
+    &-right.europa .predictor__pers-img.europa
+      margin-right: 70px
+    &-left.europa .predictor__pers-img.europa
+      margin-left: 70px
+
 
     &-left.ocean .predictor__pers-img.ocean,
     &-right.ocean .predictor__pers-img.ocean
       display: block
+      max-width: 140px
+
+    &-left.ocean .predictor__pers-img.ocean
+      margin-left: 90px
+    &-right.ocean .predictor__pers-img.ocean
+      margin-right: 90px
 
     &-left.usa .predictor__pers-img.usa,
     &-right.usa .predictor__pers-img.usa
       display: block
+      max-width: 165px
+
+    &-left.usa .predictor__pers-img.usa
+      margin-left: 50px
+    &-right.usa .predictor__pers-img.usa
+      margin-right: 50px
+
   &__confirm
     display: flex
     flex-direction: column
@@ -340,6 +413,7 @@ body
 
 
 .stages
+  z-index: 2
   &__item
     display: none
     flex-direction: column
@@ -401,6 +475,7 @@ body
   align-items: flex-end
   justify-content: center
   margin: 60px 0
+  z-index: 2
   &._active
     display: flex
   &__team
@@ -422,10 +497,49 @@ body
     &-decrease, &-increase
       width: 37px
       height: 35px
+      position: relative
+      transition: all .5s ease-in-out
+      &::before
+        content: ""
+        display: block
+        width: 70%
+        height: 70%
+        z-index: 0
+        position: absolute
+        left: 50%
+        right: 50%
+        transform: translate(-50%, -50%)
+        box-shadow: 0px 0px 15px rgba(63, 255, 197, 0.7), 0px 1px 0px #000
+        pointer-events: none
+        transition: all .5s ease-in-out
+      &::after
+        content: ""
+        display: block
+        width: 100%
+        height: 100%
+        z-index: 1
+        position: absolute
+        left: 50%
+        right: 50%
+        transform: translate(-50%, -50%)
+        pointer-events: none
+        transition: all .5s ease-in-out
+      &:hover
+        &::before
+          box-shadow: 0px 0px 15px rgba(#1FFAB8, 0.7), 0px 1px 0px #000
     &-increase
-      background: url("../img/predictor/matchup/btn-plus.png") no-repeat 0 0/contain
+      &:after
+        background: url("../img/predictor/matchup/btn-plus.png") no-repeat 0 0/contain
+      &:hover
+        &:after
+          background: url("../img/predictor/matchup/btn-plus-hover.png") no-repeat 0 0/contain
     &-decrease
-      background: url("../img/predictor/matchup/btn-minus.png") no-repeat 0 0/contain
+      &:after
+        background: url("../img/predictor/matchup/btn-minus.png") no-repeat 0 0/contain
+      &:hover
+        &:after
+          background: url("../img/predictor/matchup/btn-minus-hover.png") no-repeat 0 0/contain
+
 
     &-number
       font-family: $font-spaceland
