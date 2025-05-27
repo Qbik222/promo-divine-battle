@@ -72,6 +72,7 @@ body
   align-items: center
   width: 100%
   max-width: 1366px
+  min-width: 1366px
   padding-bottom: 30px
   position: relative
   &__wrap
@@ -85,6 +86,8 @@ body
     background-size: 1366px 610px
     position: relative
     padding-top: 25px
+    @media screen and (max-width: 600px)
+      background: url("../img/welcome/bg-mob.jpg") no-repeat 50% 0/cover
     &::before
       content: ""
       display: block
@@ -160,7 +163,8 @@ body
     margin-top: -100px
     z-index: 1
     picture
-      z-index: 1
+      z-index: 2
+      position: relative
     &::before
       content: ''
       display: block
@@ -291,9 +295,9 @@ body
     position: absolute
     width: 100%
     height: 350px
-    top: 63%
+    top: 200px
     left: 50%
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, 0)
     display: flex
     align-items: center
     justify-content: space-between
@@ -357,7 +361,8 @@ body
       margin-right: 50px
 
   &__confirm
-    display: flex
+    display: none
+    //display: flex
     flex-direction: column
     align-items: center
     max-width: 280px
@@ -402,13 +407,60 @@ body
           background: url("../img/info-popup.png") no-repeat 0 0/contain
         &::before
           background: url("../img/predictor/matchup/icon-unconfirm.png") no-repeat 0 0/contain
-      &.confirmed
+      //&.confirmed
     &.unconfirmed
       .unconfirmed
         display: flex
     &.confirmed
       .confirmed
         display: flex
+  &__change
+    display: none
+    align-items: center
+    justify-content: center
+    z-index: 4
+    color: $white
+    font-family: $font-favbet-text-reg
+    margin-top: 10px
+    &:hover
+      cursor: pointer
+    &::before
+      content: ""
+      display: block
+      margin-right: 7px
+      width: 18px
+      height: 18px
+      background: url("../img/icon-change.png") no-repeat 0 0/contain
+  &__btn
+    z-index: 5
+  &._lock
+    background-position: 50% 50%
+    .predictor
+      &__confirm
+        display: flex
+      &__change
+        display: flex
+      &__btn
+        pointer-events: none
+        opacity: .2
+    .matchup
+      &__counter
+        pointer-events: none
+        &-decrease, &-increase
+          opacity: .3
+
+  &._done
+    .predictor__confirm-text
+      display: none
+    .stages
+      &__predict
+        &-status
+          display: flex
+          margin-top: 10px
+    .matchup
+      margin-top: 0
+      margin-bottom: 20px
+
 
 
 
@@ -423,6 +475,40 @@ body
       display: flex
   &__predict-status
     display: none
+    flex-direction: column
+    align-items: center
+    &-win, &-lose
+      display: none
+      font-family: $font-spaceland
+      color: $dark-blue
+      font-size: 22px
+      mask-image: url("../img/predictor/done-subtitle-mask.png")
+      mask-repeat: no-repeat
+      mask-size: 100% 100%
+      padding: 3px 32px 3px 32px
+    &-win
+      background: $green
+    &-lose
+      background: #EABE2F
+    &-done
+      mask-image: url("../img/predictor/done-title-mask.png")
+      mask-repeat: no-repeat
+      mask-size: 100% 100%
+      background: #010053
+      padding: 3px 26px 2px 26px
+      font-family: $font-spaceland
+      font-size: 22px
+      line-height: 22px
+      color: $white
+    &._win
+      .stages__predict-status-win
+        display: flex
+    &._lose
+      .stages__predict-status-lose
+        display: flex
+  &__predict
+    flex-direction: column
+    align-items: center
   &__tabs
     display: flex
     align-items: center
@@ -838,8 +924,8 @@ body
     overflow: hidden
     border-radius: 8px
     background: url("../img/info/bg-desc.jpg") no-repeat 50% 0/cover
-    @media screen and (max-width: 1050px)
-      background: url("../img/info/bg-tab.jpg") no-repeat 50% 0/cover
+    //@media screen and (max-width: 1050px)
+    //  background: url("../img/info/bg-tab.jpg") no-repeat 50% 0/cover
     @media screen and (max-width: 600px)
       background: url("../img/info/bg-mob.jpg") no-repeat 50% 0/cover
   &__left

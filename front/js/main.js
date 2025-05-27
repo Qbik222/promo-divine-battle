@@ -281,8 +281,6 @@
         });
     }
 
-
-
     function setMatchupScore(stage, team, matchup, num){
         console.log(num)
         // console.log( predictorTabsData[stage - 1].score[matchup])
@@ -297,6 +295,7 @@
 
         return activeStage = blockStageNum;
     }
+
     function setMatchupFromTab(block) {
         const matchupNum = Number(block.dataset.matchup);
         predictorTabsData[activeStage - 1].activeMatchup = matchupNum;

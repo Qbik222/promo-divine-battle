@@ -37,7 +37,7 @@
                     p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
                     p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
                     p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
-    .predictor
+    .predictor._lock._done
         .predictor__title(data-translate="predictorTitle") Вгадай рахунок
         .predictor__stages
             .predictor__stages-item(data-stage='1') #[span(data-translate="stage") 1 етап]
@@ -102,7 +102,7 @@
                     button.stages__tabs-item(data-matchup="5") #[span(data-translate="matchup") матч] 5
                     button.stages__tabs-right
                     button.stages__tabs-left
-                .stages__predict-status
+                .stages__predict-status._lose
                     .stages__predict-status-done(data-translate="Done") Завершений
                     .stages__predict-status-win(data-translate="statusWin") Ви вгадали рахунок
                     .stages__predict-status-lose(data-translate="statusLose") Ви не вгадали рахунок
@@ -596,14 +596,14 @@
                                     .matchup__counter-number 0
                                     button.matchup__counter-increase
                                 .matchup__team-name(data-translate="mancity") Ман сіті
-        .predictor__confirm.unconfirmed.hide
+        .predictor__confirm.unconfirmed
             .predictor__confirm-text(data-translate="betConfirmText") Прогноз збережено! Твій прогноз: 10:10 При потребі його можна змінити кнопкою «Змінити прогноз»
             .predictor__confirm-item.unconfirmed(data-translate="betUnConfirmed") Прогноз не підтверджено #[span.unconfirm-popup]
             .predictor__confirm-item.confirmed(data-translate="betConfirmed") Прогноз підтверджено
         a(href="/login/").predictor__btn.btn.unauth-msg #[span.btn-txt(data-translate="signBtn")  авторизуйся]
         button.predictor__btn.btn.hide.make-predict #[span.btn-txt(data-translate="predictBtn") зробити прогноз]
         a(href="#").predictor__btn.btn.hide.confirm-predict #[span.btn-txt(data-translate="confirmBtn") підтвердити прогноз]
-        .predictor__change(data-translate="changeBtn") змінити прогноз
+        .predictor__change(data-translate="changeBtn") Змінити прогноз
     .progress
         .progress__top
             .progress__title(data-translate="progressTitle") твій прогресс
@@ -732,5 +732,4 @@
             .info__right
                 picture
                     source(media="(max-width: 600px)" srcset="img/info/pers-mob.png")
-                    source(media="(max-width: 1050px)" srcset="img/info/pers-tab.png")
                     img(src="img/info/pers-desc.png" alt="Favbet" loading="lazy")
