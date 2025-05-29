@@ -14,7 +14,10 @@
         predictorPersRight = document.querySelector('.predictor__pers-right'),
         makePredictBtn = document.querySelector('.make-predict'),
         matchupArrowRight = document.querySelector('.stages__tabs-right'),
-        matchupArrowLeft = document.querySelector('.stages__tabs-left');
+        matchupArrowLeft = document.querySelector('.stages__tabs-left'),
+        progressBlock = document.querySelector(".progress__body"),
+        progressItems = document.querySelectorAll('.progress__item'),
+        predictor = document.querySelector('.predictor');
 
 
     const ukLeng = document.querySelector('#ukLeng');
@@ -94,7 +97,7 @@
 
     }
 
-    let debug = true
+    let debug = false
 
     if (debug) hideLoader()
 
@@ -153,6 +156,9 @@
 
         function quickCheckAndRender() {
             // checkUserAuth();
+
+            setTimeout(hideLoader, 1000)
+
             setActiveBlocks(activeStage, activeMatchup)
 
             stagesTabs.forEach(tab => {
@@ -231,8 +237,8 @@
                 setMatchupFromArrow(matchupArrowLeft, "left")
                 setActiveBlocks(activeStage, predictorTabsData[activeStage - 1].activeMatchup)
             })
-
-
+            showProgressItemsOnScroll()
+            animateOnScroll(predictor, "showDecor")
         }
 
         const waitForUserId = new Promise((resolve) => {
@@ -428,6 +434,50 @@
             });
     }
 
+    function animateOnScroll(element, animationClass) {
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(animationClass);
+                } else {
+                    entry.target.classList.remove(animationClass);
+                }
+            });
+        }, options);
+
+        observer.observe(element);
+    }
+
+    function showProgressItemsOnScroll() {
+        const progressBlock = document.querySelector(".progress__body")
+        if (!progressBlock) return
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+                    const items = progressBlock.querySelectorAll(".progress__item")
+                    items.forEach((item, i) => {
+                        setTimeout(() => {
+                            item.classList.add("showItem")
+                        }, i * 200)
+                    })
+                    observer.unobserve(progressBlock)
+                }
+            })
+        }, {
+            threshold: 0.3
+        })
+
+        observer.observe(progressBlock)
+    }
+
+
     function populateUsersTable(users, currentUserId, week) {
         resultsTable.innerHTML = '';
         resultsTableOther.innerHTML = '';
@@ -495,6 +545,26 @@
         }
     }
 
+    function monitorVisibility(selector, animation, delay) {
+        const element = document.querySelector(selector);
+
+        if (!element) {
+            console.error('Element not found!');
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() =>{
+                        element.classList.add(animation)
+                    }, delay)
+                }
+            });
+        });
+
+        observer.observe(element);
+    }
 
     function translateKey(key, defaultValue) {
         if (!key) {

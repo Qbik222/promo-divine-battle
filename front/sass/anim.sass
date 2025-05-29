@@ -1,0 +1,132 @@
+.welcome
+  &__left
+    animation-delay: 1s
+    animation: ShowfromLeft 2s ease-in-out
+    background: url("../img/lightning.gif") no-repeat 0 0/contain
+  &__right
+    animation-delay: 1s
+    animation: ShowfromRight 2s ease-in-out
+    background: url("../img/fire.gif") no-repeat 0 0/contain
+  &__cup
+    &::before
+      animation: scaleBlock 5s linear infinite
+      transform-origin: center
+    picture
+      animation: float 2s ease-in-out infinite
+  &__title
+    span
+      &::before
+        animation: lightningFlash 5s infinite
+
+.predictor
+  &::before, &::after
+    opacity: 0
+  &__pers
+    .europa, .asia
+      picture
+        background: url("../img/lightning.gif") no-repeat 0 0/contain
+    .africa, .usa, .ocean
+      picture
+        background: url("../img/fire.gif") no-repeat 0 0/contain
+    .usa
+      picture
+        background-position: 50px 0
+        background-size: 50% 50%
+    .ocean
+        background-size: 50% 60%
+        background-position: 40px -60px
+    &-left
+      animation-delay: .6s
+      animation: float 2.2s ease-in-out infinite
+    &-right
+      animation: float 2.4s ease-in-out infinite
+
+.matchup
+  &__center
+    background: url("../img/lightning.gif") no-repeat 0 0/contain
+
+.progress__item
+  opacity: 0
+  transform: translateX(-20px)
+  transition: opacity 1s ease, transform 1s ease
+
+  &.showItem
+    opacity: 1
+    transform: translateX(0)
+
+
+.info
+  &__left
+    &-title
+      span
+        &::before
+          animation: lightningFlash 5s infinite
+
+
+.showDecor
+  &::before, &::after
+    transform-origin: right bottom
+    animation-delay: 1s
+    animation: showDecor 1s ease-out
+    opacity: 1
+  &::after
+    transform-origin: left bottom
+
+@keyframes lightningFlash
+  0%, 100%
+    opacity: 1
+  20%
+    opacity: 0.3
+  21%
+    opacity: 1
+  22%
+    opacity: 0.2
+  23%
+    opacity: 1
+  50%
+    opacity: 0.5
+  70%
+    opacity: 1
+  90%
+    opacity: 0.1
+
+@keyframes ShowfromLeft
+  0%
+    transform: translateX(-15%)
+    opacity: 0
+  100%
+    transform: translateX(0%)
+    opacity: 1
+
+@keyframes ShowfromRight
+  0%
+    transform: translateX(15%)
+    opacity: 0
+  100%
+    transform: translateX(0%)
+    opacity: 1
+
+@keyframes scaleBlock
+  0%,100%
+    transform: translate(-50%, 0)
+    opacity: .4
+  50%
+    transform: translate(-50%, 0) scale(1.2)
+    opacity: 1
+
+@keyframes float
+  0%
+    transform: translateY(0)
+  50%
+    transform: translateY(-6px)
+  100%
+    transform: translateY(0)
+
+@keyframes showDecor
+  0%
+    transform: scale(.8)
+    opacity: 0
+  100%
+    transform: scale(1)
+    opacity: 1
+

@@ -185,8 +185,22 @@
   .info
     max-width: 350px
     min-width: 350px
+    &__btn
+      margin: 0 auto
+      transform: scale(.8)
+    &__left
+      z-index: 1
+      align-items: center
+      min-height: 350px
+      max-height: 350px
+      &-title
+        margin-bottom: auto
     &__wrap
-      height: auto
+      padding: 10px 0
+      min-height: 350px
+      max-height: 350px
+      display: flex
+      justify-content: center
     &__right
       position: absolute
       left: 50%
@@ -195,7 +209,20 @@
       min-width: 285px
       max-width: 285px
     &__prize
-      margin-top: 50px
+      margin-top: 180px
+      flex-direction: row
+      gap: 10px
+      &-top
+        font-size: 34px
+        line-height: 34px
+      &-bottom
+          font-size: 34px
+          line-height: 34px
+          span
+            font-size: inherit
+            line-height: inherit
+            &:nth-child(2)
+              margin: 0 3px
 
 @media screen and (max-width: 374px)
   .welcome
