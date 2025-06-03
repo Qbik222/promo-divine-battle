@@ -1,260 +1,263 @@
-@import "var"
+.fav-page
+  @media screen and (max-width: 1050px)
+    .drop
+      &__bottom-text
+        text-align: center
+        font-size: 9px
+        line-height: 12px
+        max-width: 560px
 
-@media screen and (max-width: 1050px)
-  .drop
-    &__bottom-text
-      text-align: center
-      font-size: 9px
-      line-height: 12px
-      max-width: 560px
+  @media screen and (max-width: 950px)
+    .welcome
+      min-width: 1210px
+      max-width: 1210px
+      &__title
+        font-size: 57px
+      &__cup
+        max-width: 190px
+        margin-top: -40px
+      &__bottom
+        max-width: 95vw
 
-@media screen and (max-width: 950px)
-  .welcome
-    min-width: 1210px
-    max-width: 1210px
-    &__title
-      font-size: 57px
-    &__cup
-      max-width: 190px
-      margin-top: -40px
-    &__bottom
-      max-width: 95vw
-
-@media screen and (max-width: 850px)
-  .info
-    padding-top: 30px
-    max-width: 705px
-    min-width: 705px
-    &__wrap
-      padding-right: 0
+  @media screen and (max-width: 850px)
+    .info
+      padding-top: 30px
+      max-width: 705px
+      min-width: 705px
+      &__wrap
+        padding-right: 0
 
 
-@media screen and (max-width: 710px)
-  .info
-    &__wrap
-      transform: scale(.9)
-      margin: -15px 0
+  @media screen and (max-width: 710px)
+    .info
+      &__wrap
+        transform: scale(.9)
+        margin: -15px 0
 
-@media screen and (max-width: 600px)
-  .welcome
-    max-width: 480px
-    min-width: 480px
-    &__wrap
-      padding-top: 20px
-    &__left
-      left: 0
-      top: 45px
-      max-width: 225px
-    &__right
-      right: 0
-      max-width: 260px
-      top: 55px
-    &__cup
-      max-width: 155px
-      &::before
-        width: 390px
-        height: 390px
-        top: -110px
-        left: 55%
-    &__title
-      font-size: 42px
-    &__prize
-      &-item
-        &:nth-child(1)
+  @media screen and (max-width: 600px)
+    .welcome
+      max-width: 480px
+      min-width: 480px
+      &__wrap
+        padding-top: 20px
+      &__left
+        left: 0
+        top: 45px
+        max-width: 225px
+      &__right
+        right: 0
+        max-width: 260px
+        top: 55px
+      &__cup
+        max-width: 155px
+        &::before
+          width: 390px
+          height: 390px
+          top: -110px
+          left: 55%
+      &__title
+        font-size: 42px
+      &__prize
+        &-item
+          &:nth-child(1)
+            font-size: 52px
+            line-height: 52px
+          &:nth-child(2)
+            span
+              &:nth-child(1)
+                font-size: 28px
+                line-height: 28px
+              &:nth-child(2)
+                font-size: 80px
+                line-height: 62px
+              &:nth-child(3)
+                font-size: 28px
+                line-height: 28px
+              &:nth-child(4)
+                font-size: 66px
+                line-height: 66px
+                margin-top: auto
+
+    .predictor
+      min-width: 660px
+      max-width: 660px
+      &::before, &::after
+        width: 330px
+        height: 370px
+        top: 155px
+      &__stages
+        transform: scale(.9)
+        margin: -10px 0 -5px 0
+      &._lock
+        background-position: 50% 153px
+        .predictor
+          &__pres
+            top: 135px
+        .matchup
+          &__team
+            margin-top: 180px
+          &__center
+            margin: 20px -40px auto -40px
+      &._done
+        .predictor
+          &__pers
+            top: 190px
+        .matchup
+          &__team
+            margin-top: 230px
+          &__center
+            margin: 40px -40px auto -40px
+      &__pers
+        top: 160px
+        &-left.africa .predictor__pers-img.africa
+          margin-left: 140px
+          margin-top: 40px
+        &-right.africa .predictor__pers-img.africa
+          margin-right: 140px
+          margin-top: 40px
+
+        &-left.africa .predictor__pers-img.africa,
+        &-right.africa .predictor__pers-img.africa
+          max-width: 150px
+
+        &-left.asia .predictor__pers-img.asia
+          margin-left: 130px
+        &-right.asia .predictor__pers-img.asia
+          margin-right: 130px
+
+        &-left.asia .predictor__pers-img.asia,
+        &-right.asia .predictor__pers-img.asia
+          max-width: 150px
+          margin-top: 30px
+
+        &-right.europa .predictor__pers-img.europa
+          margin-right: 160px
+        &-left.europa .predictor__pers-img.europa
+          margin-left: 160px
+
+        &-left.europa .predictor__pers-img.europa,
+        &-right.europa .predictor__pers-img.europa
+          max-width: 115px
+          margin-top: 30px
+
+        &-left.ocean .predictor__pers-img.ocean
+          margin-left: 160px
+        &-right.ocean .predictor__pers-img.ocean
+          margin-right: 160px
+
+        &-left.ocean .predictor__pers-img.ocean,
+        &-right.ocean .predictor__pers-img.ocean
+          max-width: 120px
+          margin-top: 30px
+
+        &-left.usa .predictor__pers-img.usa
+          margin-left: 135px
+        &-right.usa .predictor__pers-img.usa
+          margin-right: 135px
+
+        &-left.usa .predictor__pers-img.usa,
+        &-right.usa .predictor__pers-img.usa
+          max-width: 145px
+        &__title
           font-size: 52px
-          line-height: 52px
-        &:nth-child(2)
-          span
-            &:nth-child(1)
-              font-size: 28px
-              line-height: 28px
-            &:nth-child(2)
-              font-size: 80px
-              line-height: 62px
-            &:nth-child(3)
-              font-size: 28px
-              line-height: 28px
-            &:nth-child(4)
-              font-size: 66px
-              line-height: 66px
-              margin-top: auto
-
-  .predictor
-    min-width: 660px
-    max-width: 660px
-    &::before, &::after
-      width: 330px
-      height: 370px
-      top: 155px
-    &__stages
-      transform: scale(.9)
-      margin: -10px 0 -5px 0
-    &._lock
-      background-position: 50% 153px
-      .predictor
-        &__pres
-          top: 135px
       .matchup
         &__team
-          margin-top: 180px
+          margin-top: 190px
         &__center
           margin: 20px -40px auto -40px
-    &._done
-      .predictor
-        &__pers
-          top: 190px
-      .matchup
-        &__team
-          margin-top: 230px
-        &__center
-          margin: 40px -40px auto -40px
-    &__pers
-      top: 160px
-      &-left.africa .predictor__pers-img.africa
-        margin-left: 140px
-        margin-top: 40px
-      &-right.africa .predictor__pers-img.africa
-        margin-right: 140px
-        margin-top: 40px
-
-      &-left.africa .predictor__pers-img.africa,
-      &-right.africa .predictor__pers-img.africa
-        max-width: 150px
-
-      &-left.asia .predictor__pers-img.asia
-        margin-left: 130px
-      &-right.asia .predictor__pers-img.asia
-        margin-right: 130px
-
-      &-left.asia .predictor__pers-img.asia,
-      &-right.asia .predictor__pers-img.asia
-        max-width: 150px
-        margin-top: 30px
-
-      &-right.europa .predictor__pers-img.europa
-        margin-right: 160px
-      &-left.europa .predictor__pers-img.europa
-        margin-left: 160px
-
-      &-left.europa .predictor__pers-img.europa,
-      &-right.europa .predictor__pers-img.europa
-        max-width: 115px
-        margin-top: 30px
-
-      &-left.ocean .predictor__pers-img.ocean
-        margin-left: 160px
-      &-right.ocean .predictor__pers-img.ocean
-        margin-right: 160px
-
-      &-left.ocean .predictor__pers-img.ocean,
-      &-right.ocean .predictor__pers-img.ocean
-        max-width: 120px
-        margin-top: 30px
-
-      &-left.usa .predictor__pers-img.usa
-        margin-left: 135px
-      &-right.usa .predictor__pers-img.usa
-        margin-right: 135px
-
-      &-left.usa .predictor__pers-img.usa,
-      &-right.usa .predictor__pers-img.usa
-        max-width: 145px
-      &__title
-        font-size: 52px
-    .matchup
-      &__team
-        margin-top: 190px
-      &__center
-        margin: 20px -40px auto -40px
-  .progress
-    padding: 0 5px
-  .stages
-    &__tabs
-      gap: 10px
-      width: calc(95vw - 100px)
-      max-width: 340px
-      min-width: 260px
-      justify-content: space-between
-      flex-wrap: wrap
-      &-item
-        font-size: 20px
-        width: 40px
-  .drop
-    max-width: 365px
-    width: 95vw
-  .info
-    max-width: 350px
-    min-width: 350px
-    &__btn
-      margin: 0 auto
-      transform: scale(.8)
-    &__left
-      z-index: 1
-      align-items: center
-      min-height: 350px
-      max-height: 350px
-      &-title
-        margin-bottom: auto
-    &__wrap
-      padding: 10px 0
-      min-height: 350px
-      max-height: 350px
-      display: flex
-      justify-content: center
-    &__right
-      position: absolute
-      left: 50%
-      top: 0
-      transform: translateX(-50%) translateY(0)
-      min-width: 285px
-      max-width: 285px
-    &__prize
-      margin-top: 180px
-      flex-direction: row
-      gap: 10px
-      &-top
-        font-size: 34px
-        line-height: 34px
-      &-bottom
+    .progress
+      padding: 0 5px
+    .stages
+      &__tabs
+        gap: 15px
+        max-width: calc(95vw - 100px)
+        width: fit-content
+        min-width: 260px
+        justify-content: center
+        flex-wrap: wrap
+        &-item
+          font-size: 20px
+          width: 40px
+    .drop
+      max-width: 365px
+      width: 95vw
+    .info
+      max-width: 350px
+      min-width: 350px
+      &__btn
+        margin: 0 auto
+        transform: scale(.8)
+      &__left
+        z-index: 1
+        align-items: center
+        min-height: 350px
+        max-height: 350px
+        &-title
+          margin-bottom: auto
+      &__wrap
+        padding: 10px 0
+        min-height: 350px
+        max-height: 350px
+        display: flex
+        justify-content: center
+      &__right
+        position: absolute
+        left: 50%
+        top: 0
+        transform: translateX(-50%) translateY(0)
+        min-width: 285px
+        max-width: 285px
+      &__prize
+        margin-top: 180px
+        flex-direction: row
+        gap: 10px
+        &-top
           font-size: 34px
           line-height: 34px
-          span
-            font-size: inherit
-            line-height: inherit
-            &:nth-child(2)
-              margin: 0 3px
+        &-bottom
+            font-size: 34px
+            line-height: 34px
+            span
+              font-size: inherit
+              line-height: inherit
+              &:nth-child(2)
+                margin: 0 3px
+    .popups
+      .popup
+        width: 340px
+        height: 275px
 
-@media screen and (max-width: 374px)
-  .welcome
-    min-width: 420px
-    max-width: 420px
-    &__left
-      max-width: 190px
-    &__right
-      max-width: 220px
-  .stages
-    &__tabs
-      gap: 10px
-      width: calc(95vw - 60px)
+  @media screen and (max-width: 374px)
+    .welcome
+      min-width: 420px
+      max-width: 420px
+      &__left
+        max-width: 190px
+      &__right
+        max-width: 220px
+    .stages
+      &__tabs
+        gap: 10px
+        width: calc(95vw - 60px)
 
-@media screen and (max-width: 360px)
-  .welcome
-    min-width: 380px
-    max-width: 380px
-    &__left
-      max-width: 170px
-    &__right
-      max-width: 200px
-  .progress
-    min-width: 360px
-    max-width: 360px
-    transform: scale(.9)
-    margin: -20px 0
-  .predictor
-    &__stages
-      transform: scale(.8)
+  @media screen and (max-width: 360px)
+    .welcome
+      min-width: 380px
+      max-width: 380px
+      &__left
+        max-width: 170px
+      &__right
+        max-width: 200px
+    .progress
+      min-width: 360px
+      max-width: 360px
+      transform: scale(.9)
+      margin: -20px 0
+    .predictor
+      &__stages
+        transform: scale(.8)
+        margin: -10px 0
+    .table
+      transform: scale(.9)
       margin: -10px 0
-  .table
-    transform: scale(.9)
-    margin: -10px 0
 

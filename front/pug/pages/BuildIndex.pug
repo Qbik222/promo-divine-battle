@@ -1,4 +1,15 @@
-.fav-page.loading
+button.menu-btn menu
+.menu-test
+    button.dark-btn dark
+    button.lng-btn en
+    button.auth-btn auth
+    button.lock-btn lock
+    button.done-btn done
+    button.normal-btn normal
+    button.confirm-btn confirm
+    button.status-btn status
+
+.fav-page.loading#divine-battle
     .spinner-overlay
         .spinner
     .welcome
@@ -23,7 +34,7 @@
                     source(media="(max-width: 1050px)" srcset="img/welcome/pers-right-tab.png")
                     img(src="img/welcome/pers-right-desc.png" alt="text")
             a(href="/login/").welcome__btn.btn.unauth-msg #[span.btn-txt(data-translate="signBtn")  авторизуйся]
-            button.welcome__btn.btn.part-btn.hide.toChose #[span.btn-txt(data-translate="partBtn") зробити прогноз]
+            button.welcome__btn.btn.part-btn.hide.toPredict #[span.btn-txt(data-translate="partBtn") зробити прогноз]
             //a(href="#").welcome__btn.btn.btn-join.hide(data-translate="mainBtn") авторизуйся
         .welcome__bottom(data-translate="welcomeBottom") Прогнозуй точні рахунки матчів клубного чемпіонату світу, підтверджуй від 200 грн. їх ставками та забирай призи
     .drop
@@ -37,12 +48,12 @@
                     p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
                     p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
                     p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
-    .predictor._lock._done
+    .predictor._lock._done#predict
         .predictor__title(data-translate="predictorTitle") Вгадай рахунок
         .predictor__stages
-            .predictor__stages-item(data-stage='1') #[span(data-translate="stage") 1 етап]
-            .predictor__stages-item(data-stage='2') #[span(data-translate="stage") 2 етап]
-            .predictor__stages-item(data-stage='3') #[span(data-translate="stage") 3 етап]
+            .predictor__stages-item(data-stage='1') #[span(data-translate="stage1") 1 етап]
+            .predictor__stages-item(data-stage='2') #[span(data-translate="stage2") 2 етап]
+            .predictor__stages-item(data-stage='3') #[span(data-translate="stage3") 3 етап]
             .predictor__stages-item(data-stage='4') 1/8
             .predictor__stages-item(data-stage='5') 1/4
             .predictor__stages-item(data-stage='6') 1/2
@@ -722,14 +733,59 @@
                     p 1. Натисни кнопку «Взяти участь». Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці акції.
     .info
         .info__text(data-translate="infoText") А також продовжуй свою боротьбу в Акції «Гра Богів»
-        .info__wrap
+        a.info__wrap(href="#")
             .info__left
-                .info__left-title(data-translate="infoTitle") #[span гра] #[span богів]
+                .info__left-title(data-translate="infoTitle")
+                    span гра
+                    span богів
                 .info__prize
                     .info__prize-top(data-translate="infoPrizeTop") Призовий фонд
-                    .info__prize-bottom(data-translate="infoPrizeBottom") #[span 1 000 000] #[span *] #[span ₴]
-                a.info__btn.btn(href="#") #[span.btn-txt(data-translate="infoBtn") Взяти Участь]
+                    .info__prize-bottom(data-translate="infoPrizeBottom")
+                        span 1 000 000
+                        span *
+                        span ₴
+                button.info__btn.btn(type="button")
+                    span.btn-txt(data-translate="infoBtn") Взяти Участь
             .info__right
                 picture
                     source(media="(max-width: 600px)" srcset="img/info/pers-mob.png")
                     img(src="img/info/pers-desc.png" alt="Favbet" loading="lazy")
+
+    .popups.overlay-opacity
+        .popup
+            .popup__scroll
+                .popup__close
+                .popup__text(data-translate="popupText").
+                                    Уявіть собі, що ви опинилися на березі мальовничого озера,
+                                    де вода блищить на сонці, а навколо розкинулися зелені дерева.
+                                    Тут, у цій ідилічній обстановці, плавають різноманітні види риб.
+                                    Від маленьких, яскравих рибок, які весело стрибають на поверхні,
+                                    до великих, величних особин, що повільно ковзають у глибині. Кожна
+                                    риба має свою унікальну історію та характер. Наприклад, одна з них,
+                                    названа Синя Зірка, славиться своєю швидкістю та грацією, а інша, Велетень
+                                    Озера, вражає своїми розмірами та спокоєм. Рибалки, які приходять сюди,
+                                    ʼзавжди сподіваються на удачу, адже кожен вилов може стати справжнім трофеєм.
+                                    Це місце не лише для риболовлі, а й для спостереження за природою, де можна
+                                    насолоджуватися тишею та красою навколишнього світу.
+                                    Уявіть собі, що ви опинилися на березі мальовничого озера,
+                                    де вода блищить на сонці, а навколо розкинулися зелені дерева.
+                                    Тут, у цій ідилічній обстановці, плавають різноманітні види риб.
+                                    Від маленьких, яскравих рибок, які весело стрибають на поверхні,
+                                    до великих, величних особин, що повільно ковзають у глибині. Кожна
+                                    риба має свою унікальну історію та характер. Наприклад, одна з них,
+                                    названа Синя Зірка, славиться своєю швидкістю та грацією, а інша, Велетень
+                                    Озера, вражає своїми розмірами та спокоєм. Рибалки, які приходять сюди,
+                                    ʼзавжди сподіваються на удачу, адже кожен вилов може стати справжнім трофеєм.
+                                    Це місце не лише для риболовлі, а й для спостереження за природою, де можна
+                                    насолоджуватися тишею та красою навколишнього світу.
+                                    Уявіть собі, що ви опинилися на березі мальовничого озера,
+                                    де вода блищить на сонці, а навколо розкинулися зелені дерева.
+                                    Тут, у цій ідилічній обстановці, плавають різноманітні види риб.
+                                    Від маленьких, яскравих рибок, які весело стрибають на поверхні,
+                                    до великих, величних особин, що повільно ковзають у глибині. Кожна
+                                    риба має свою унікальну історію та характер. Наприклад, одна з них,
+                                    названа Синя Зірка, славиться своєю швидкістю та грацією, а інша, Велетень
+                                    Озера, вражає своїми розмірами та спокоєм. Рибалки, які приходять сюди,
+                                    ʼзавжди сподіваються на удачу, адже кожен вилов може стати справжнім трофеєм.
+                                    Це місце не лише для риболовлі, а й для спостереження за природою, де можна
+                                    насолоджуватися тишею та красою навколишнього світу.

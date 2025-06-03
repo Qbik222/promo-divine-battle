@@ -1,0 +1,42 @@
+body.dark
+  background: #090B18
+  .fav-page
+    background: #090B18
+    .welcome
+      &::before
+        background: linear-gradient(270deg, rgba(#090B18, 0.02) 0%, rgba(#090B18, 0.66) 36.97%, #090B18 100%)
+      &::after
+        background: linear-gradient(90deg, rgba(#090B18, 0.02) 0%, rgba(#090B18, 0.66) 36.97%, #090B18 100%)
+      &__wrap
+        background: url("../img/welcome/bg-desc-dark.jpg") no-repeat 50% 0/cover
+        background-size: 1366px 610px
+        @media screen and (max-width: 600px)
+          background: url("../img/welcome/bg-mob-dark.jpg") no-repeat 50% 0/cover
+        &::before
+          background: linear-gradient(180deg, rgba(#090B18, 0.00) 0%, rgba(#090B18, 0.66) 36.97%, #090B18 100%)
+    .predictor
+      background: url("../img/predictor/bg-desc-dark.jpg") no-repeat 50% 66%/cover
+      background-size: 460px 380px
+      @media screen and (max-width: 600px)
+        background: url("../img/predictor/bg-mob-dark.jpg") no-repeat 50% 50%/cover
+        background-size: 375px 315px
+      &__stages
+        background: #131931
+    .progress
+      &__item
+        &::after
+          background: #131931
+        &._current
+          &::after
+            background: $magenta
+
+    .info
+      &__wrap
+        background: url("../img/info/bg-desc-dark.jpg") no-repeat 50% 0/cover
+        @media screen and (max-width: 600px)
+          background: url("../img/info/bg-mob-dark.jpg") no-repeat 50% 0/cover
+    .table
+      &__row
+        background: #131931
+        &.you
+          background: $magenta

@@ -1,6 +1,6 @@
 (function () {
 
-    const apiURL = 'https://fav-prom.com/api_your_promo'
+    const apiURL = 'https://fav-prom.com/api_divine_battle'
 
     const mainPage = document.querySelector(".fav-page"),
         unauthMsgs = document.querySelectorAll('.unauth-msg'),
@@ -13,11 +13,14 @@
         predictorPersLeft = document.querySelector('.predictor__pers-left'),
         predictorPersRight = document.querySelector('.predictor__pers-right'),
         makePredictBtn = document.querySelector('.make-predict'),
-        matchupArrowRight = document.querySelector('.stages__tabs-right'),
-        matchupArrowLeft = document.querySelector('.stages__tabs-left'),
+        matchupArrowRight = document.querySelectorAll('.stages__tabs-right'),
+        matchupArrowLeft = document.querySelectorAll('.stages__tabs-left'),
         progressBlock = document.querySelector(".progress__body"),
         progressItems = document.querySelectorAll('.progress__item'),
-        predictor = document.querySelector('.predictor');
+        predictor = document.querySelector('.predictor'),
+        overlay = document.querySelector('.popups'),
+        popup = document.querySelector('.popup'),
+        closePopup = document.querySelector('.popup__close');
 
 
     const ukLeng = document.querySelector('#ukLeng');
@@ -41,7 +44,7 @@
 
     let loaderBtn = false
 
-    let locale = "en"
+    let locale =  sessionStorage.getItem("locale") || "en"
 
     if (ukLeng) locale = 'uk';
     if (enLeng) locale = 'en';
@@ -50,13 +53,13 @@
     let activeMatchup = 1
 
     let predictorTabsData = [
-        {stage: 1, activeMatchup: 1, score: [{team1: 1, team2: 0}, {team1: 2, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}]},
-        {stage: 2, activeMatchup: 1, score: [{team1: 1, team2: 0}, {team1: 2, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}]},
-        {stage: 3, activeMatchup: 1, score: [{team1: 1, team2: 0}, {team1: 2, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}, {team1: 0, team2: 0}]},
-        {stage: 4, activeMatchup: 1, score: [{team1: 1, team2: 0}, {team1: 2, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}]},
-        {stage: 5, activeMatchup: 1, score: [{team1: 1, team2: 0}, {team1: 2, team2: 0}, {team1: 3, team2: 0}, {team1: 3, team2: 0}]},
-        {stage: 6, activeMatchup: 1, score: [{team1: 1, team2: 0}, {team1: 2, team2: 0}]},
-        {stage: 7, activeMatchup: 1, score: [{team1: 1, team2: 0}]},
+        {stage: 1, activeMatchup: 1, score: [{team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}]},
+        {stage: 2, activeMatchup: 1, score: [{team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}]},
+        {stage: 3, activeMatchup: 1, score: [{team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}]},
+        {stage: 4, activeMatchup: 1, score: [{team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}]},
+        {stage: 5, activeMatchup: 1, score: [{team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}, {team1: 0, team2: 0}]},
+        {stage: 6, activeMatchup: 1, score: [{team1: 0, team2: 0}, {team1: 0, team2: 0}]},
+        {stage: 7, activeMatchup: 1, score: [{team1: 0, team2: 0}]},
     ]
 
     function setActiveBlocks (stage, matchup){
@@ -105,6 +108,8 @@
     const translateState = true;
     let userId = null;
 
+    userId = Number(sessionStorage.getItem("userId")) || null
+
     const request = function (link, extraOptions) {
         return fetch(apiURL + link, {
             headers: {
@@ -120,14 +125,14 @@
             .catch(err => {
                 console.error('API request failed:', err);
 
-                reportError(err);
-
-                document.querySelector('.fav-page').style.display = 'none';
-                if (window.location.href.startsWith("https://www.favbet.hr/")) {
-                    window.location.href = '/promocije/promocija/stub/';
-                } else {
-                    window.location.href = '/promos/promo/stub/';
-                }
+                // reportError(err);
+                //
+                // document.querySelector('.fav-page').style.display = 'none';
+                // if (window.location.href.startsWith("https://www.favbet.hr/")) {
+                //     window.location.href = '/promocije/promocija/stub/';
+                // } else {
+                //     window.location.href = '/promos/promo/stub/';
+                // }
 
                 return Promise.reject(err);
             });
@@ -155,7 +160,22 @@
         }
 
         function quickCheckAndRender() {
-            // checkUserAuth();
+            checkUserAuth();
+
+            //go to predict
+            document.querySelector(".toPredict").addEventListener('click', function () {
+                const targetElement = document.getElementById("predict");
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 2;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth',
+                });
+            });
+
+            const openPopup = document.querySelector('.unconfirm-popup');
+
+            setPopup(popup, overlay, closePopup, openPopup)
 
             setTimeout(hideLoader, 1000)
 
@@ -229,14 +249,28 @@
                 }
             })
 
-            matchupArrowRight.addEventListener("click", () =>{
-                setMatchupFromArrow(matchupArrowRight, "right")
-                setActiveBlocks(activeStage, predictorTabsData[activeStage - 1].activeMatchup)
+
+            matchupArrowRight.forEach((tab, i) => {
+                tab.addEventListener("click", () =>{
+                    let currentStage = Number(document.querySelector('[data-stage]._active').getAttribute('data-stage'))
+
+                    setMatchupFromArrow(tab, "right")
+                    setActiveBlocks(currentStage, predictorTabsData[currentStage - 1].activeMatchup)
+                })
             })
-            matchupArrowLeft.addEventListener("click", () =>{
-                setMatchupFromArrow(matchupArrowLeft, "left")
-                setActiveBlocks(activeStage, predictorTabsData[activeStage - 1].activeMatchup)
+
+            matchupArrowLeft.forEach((tab, i) => {
+
+                tab.addEventListener("click", () =>{
+                    let currentStage = Number(document.querySelector('[data-stage]._active').getAttribute('data-stage'))
+                    
+                    setMatchupFromArrow(tab, "left")
+                    setActiveBlocks(currentStage, predictorTabsData[currentStage - 1].activeMatchup)
+                })
             })
+
+
+
             showProgressItemsOnScroll()
             animateOnScroll(predictor, "showDecor")
         }
@@ -261,7 +295,7 @@
             .then(json => {
                 i18nData = json;
                 translate();
-                const targetNode = document.getElementById("goals-or-zeros-leage");
+                const targetNode = document.getElementById("divine-battle");
                 const mutationObserver = new MutationObserver(function (mutations) {
                     mutationObserver.disconnect();
                     translate();
@@ -357,26 +391,43 @@
             const showElements = (elements) => elements.forEach(el => el.classList.remove('hide'));
             const hideElements = (elements) => elements.forEach(el => el.classList.add('hide'));
 
+            console.log(userId)
+
             if (!userId) {
                 hideElements(participateBtns);
-                hideElements(redirectBtns);
+                // hideElements(redirectBtns);
+                makePredictBtn.classList.add('hide');
                 showElements(unauthMsgs);
                 hideLoader();
                 return Promise.resolve(false);
             }
 
-            hideElements(unauthMsgs);
+            if (userId ) { //userid
+                hideElements(unauthMsgs);
+                showElements(participateBtns);
+                makePredictBtn.classList.remove('hide');
+            }
 
-            return request(`/favuser/${userId}?nocache=1`).then(res => {
-                if (res.userid) {
-                    hideElements(participateBtns);
-                    showElements(redirectBtns);
-                } else {
-                    showElements(participateBtns);
-                    hideElements(redirectBtns);
-                }
-                hideLoader();
-            });
+
+
+            // setTimeout(() => {
+            //     else {
+            //         showElements(participateBtns);
+            //         hideElements(redirectBtns);
+            //     }
+            //     hideLoader();
+            // }, 500)
+
+            // return request(`/favuser/${userId}?nocache=1`).then(res => {
+            //     if (res.userid) {
+            //         hideElements(participateBtns);
+            //         showElements(redirectBtns);
+            //     } else {
+            //         showElements(participateBtns);
+            //         hideElements(redirectBtns);
+            //     }
+            //     hideLoader();
+            // });
         }, loadTime);
     }
 
@@ -580,6 +631,30 @@
         return "**" + userId.toString().slice(2);
     }
 
+    function setPopup(popup, overlay, closeBtn, openBtn){
+        popup.classList.add('hide');
+        overlay.classList.add('overlay-opacity');
+        openBtn.addEventListener('click', (e) => {
+            overlay.classList.remove('overlay-opacity');
+            popup.classList.remove('hide');
+            document.body.style.overflow = 'hidden';
+        })
+        closeBtn.addEventListener('click', (e) => {
+            overlay.classList.add('overlay-opacity');
+            popup.classList.add('hide');
+            document.body.style.overflow = 'auto';
+        })
+        document.addEventListener('click', (e) => {
+            const popupSelector = '.' + popup.classList[0];
+            if (!e.target.closest(popupSelector) && e.target !== openBtn) {
+                overlay.classList.add('overlay-opacity');
+                popup.classList.add('hide');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+    }
+
     function getPrizeTranslationKey(place, week) {
         if (place <= 3) return `prize_${week}-${place}`;
         if (place <= 10) return `prize_${week}-4-10`;
@@ -622,8 +697,115 @@
             });
     }
 
-    // loadTranslations().then(init) запуск ініту сторінки
+    loadTranslations().then(init)
 
-    init()
+    // test
+
+
+    function setPredictorNormal() {
+       let block = document.querySelector(".predictor")
+
+        block.classList.remove('_lock');
+        block.classList.remove('_done');
+
+    }
+
+    function setPredictorLock() {
+        let block = document.querySelector(".predictor")
+
+        block.classList.add('_lock');
+        block.classList.remove('_done');
+
+    }
+
+    function toggleConfirm(item){
+        if(item.classList.contains('confirmed')){
+            item.classList.add('unconfirmed');
+            item.classList.remove('confirmed');
+            return
+        }
+        if(item.classList.contains('unconfirmed')){
+            item.classList.add('confirmed');
+            item.classList.remove('unconfirmed');
+            return
+        }
+    }
+
+    function toggleWinLose(item){
+
+
+        if(item.classList.contains('_win')){
+            item.classList.add('_lose');
+            item.classList.remove('_win');
+            return
+        }else{
+            item.classList.add('_win')
+        }
+        if(item.classList.contains('_lose')){
+            item.classList.add('_win');
+            item.classList.remove('_lose');
+            return
+        }
+    }
+
+    document.querySelector(".confirm-btn").addEventListener('click', (e) => {
+        document.querySelectorAll('.predictor__confirm').forEach((item) => {
+            toggleConfirm(item);
+        })
+    })
+
+    document.querySelector(".status-btn").addEventListener('click', (e) => {
+        document.querySelectorAll('.stages__predict-status').forEach((item) => {
+            toggleWinLose(item);
+        })
+    })
+
+
+
+    function setPredictorDone() {
+        let block = document.querySelector(".predictor")
+
+        block.classList.add('_lock');
+        block.classList.add('_done');
+
+    }
+
+    document.querySelector('.lock-btn')?.addEventListener('click', setPredictorLock);
+    document.querySelector('.done-btn')?.addEventListener('click', setPredictorDone);
+    document.querySelector('.normal-btn')?.addEventListener('click', setPredictorNormal);
+
+
+    document.querySelector('.dark-btn').addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+    });
+
+    const lngBtn = document.querySelector(".lng-btn")
+
+    lngBtn.addEventListener("click", () => {
+        if (sessionStorage.getItem("locale")) {
+            sessionStorage.removeItem("locale");
+        } else {
+            sessionStorage.setItem("locale", "uk");
+        }
+        window.location.reload();
+    });
+
+    const authBtn = document.querySelector(".auth-btn")
+
+    authBtn.addEventListener("click", () =>{
+        if(userId){
+            sessionStorage.removeItem("userId")
+        }else{
+            sessionStorage.setItem("userId", "100300268")
+        }
+        window.location.reload()
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector(".menu-btn")?.addEventListener("click", () => {
+            document.querySelector(".menu-test")?.classList.toggle("hide");
+        });
+    });
+
 
 })();
