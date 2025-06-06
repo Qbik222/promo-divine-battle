@@ -497,12 +497,12 @@ body
           display: flex
         &__btn
           pointer-events: none
-          opacity: .2
+          opacity: .5
       .matchup
         &__counter
           pointer-events: none
           &-decrease, &-increase
-            opacity: .3
+            opacity: .6
 
     &._done
       .predictor__confirm-text
@@ -706,6 +706,8 @@ body
     align-items: center
     width: 100%
     max-width: 350px
+    z-index: 2
+    position: relative
     &__top
       display: flex
       justify-content: space-between
@@ -800,6 +802,8 @@ body
         font-size: 24px
         line-height: 20px
         text-transform: uppercase
+      &-count
+        margin-right: 5px
   #tableOther
     margin-top: 10px
   .table
@@ -951,7 +955,7 @@ body
       overflow: hidden
       border-radius: 8px
       background: url("../img/info/bg-desc.jpg") no-repeat 50% 0/cover
-      cursor: default
+      //cursor: default
       @media screen and (max-width: 600px)
         background: url("../img/info/bg-mob.jpg") no-repeat 50% 0/cover
     &__left
@@ -1186,7 +1190,8 @@ body
     transition: opacity .5s ease-in-out
     .popup
       width: 540px
-      height: 335px
+      max-height: 335px
+      height: fit-content
       background: $white
       font-family: $font-favbet-text-reg
       scrollbar-width: auto
@@ -1216,7 +1221,7 @@ body
       &__scroll
         overflow-y: auto
         width: 100%
-        height: 95%
+        height: 100%
         &::-webkit-scrollbar-thumb
           background: $magenta
           width: 2px
