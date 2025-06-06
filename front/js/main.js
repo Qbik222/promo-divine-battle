@@ -184,6 +184,15 @@
             stagesTabs.forEach(tab => {
                 tab.addEventListener('click', () =>{
 
+                    stagesTabs.forEach(item =>{
+                        item.style.pointerEvents = "none";
+                    })
+                    setTimeout(() =>{
+                        stagesTabs.forEach(item =>{
+                            item.style.pointerEvents = "initial";
+                        })
+                    }, 500)
+
                     const regions = ['africa', 'usa', 'europa', 'ocean', 'asia']
 
                     predictorPersLeft.classList.remove(...regions)
@@ -205,6 +214,14 @@
 
             stagesMatchupTabs.forEach((tab, i) => {
                 tab.addEventListener('click', () =>{
+                    stagesMatchupTabs.forEach(item =>{
+                        item.style.pointerEvents = "none";
+                    })
+                    setTimeout(() =>{
+                        stagesMatchupTabs.forEach(item =>{
+                            item.style.pointerEvents = "initial";
+                        })
+                    }, 500)
                     setMatchupFromTab(tab)
 
                     const regions = ['africa', 'usa', 'europa', 'ocean', 'asia']
@@ -252,6 +269,14 @@
 
             matchupArrowRight.forEach((tab, i) => {
                 tab.addEventListener("click", () =>{
+                    matchupArrowRight.forEach(item =>{
+                        item.style.pointerEvents = "none";
+                    })
+                    setTimeout(() =>{
+                        matchupArrowRight.forEach(item =>{
+                            item.style.pointerEvents = "initial";
+                        })
+                    }, 500)
                     let currentStage = Number(document.querySelector('[data-stage]._active').getAttribute('data-stage'))
 
                     setMatchupFromArrow(tab, "right")
@@ -262,6 +287,14 @@
             matchupArrowLeft.forEach((tab, i) => {
 
                 tab.addEventListener("click", () =>{
+                    matchupArrowLeft.forEach(item =>{
+                        item.style.pointerEvents = "none";
+                    })
+                    setTimeout(() =>{
+                        matchupArrowLeft.forEach(item =>{
+                            item.style.pointerEvents = "initial";
+                        })
+                    }, 500)
                     let currentStage = Number(document.querySelector('[data-stage]._active').getAttribute('data-stage'))
                     
                     setMatchupFromArrow(tab, "left")

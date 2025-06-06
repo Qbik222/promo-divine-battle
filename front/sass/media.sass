@@ -38,6 +38,8 @@
     .welcome
       max-width: 480px
       min-width: 480px
+      &::before, &::after
+        content: none
       &__wrap
         padding-top: 20px
       &__left
@@ -200,6 +202,8 @@
         max-height: 350px
         display: flex
         justify-content: center
+        transform: scale(1)
+        margin: 0
       &__right
         position: absolute
         left: 50%
@@ -220,8 +224,14 @@
             span
               font-size: inherit
               line-height: inherit
+              &:nth-child(1)
+                font-size: 34px
+                line-height: 34px
               &:nth-child(2)
                 margin: 0 3px
+              &:nth-child(3)
+                font-size: 34px
+                line-height: 34px
     .popups
       .popup
         width: 340px
@@ -239,6 +249,12 @@
       &__tabs
         gap: 10px
         width: calc(95vw - 60px)
+    .info
+      &__wrap
+        transform: scale(.9)
+        margin: -10px 0
+      &__text
+        max-width: 315px
 
   @media screen and (max-width: 360px)
     .welcome
